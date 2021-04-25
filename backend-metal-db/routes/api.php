@@ -11,7 +11,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // User Methods
 
-
 Route::post('/register', [UserController::class, 'registerUser']);
 Route::get('/users', [UserController::class, 'getAllUsers']);
 Route::get('/profile/{id}',[UserController::class, 'getUserById']);
@@ -20,3 +19,5 @@ Route::post('/login', [UserController::class, 'loginUser']);
 Route::post('/logout', [UserController::class, 'logoutUser']);
 Route::put('/user',[UserController::class, 'updateUser']);
 Route::delete('/user',[UserController::class, 'deleteUser']); 
+
+//Product Methods
