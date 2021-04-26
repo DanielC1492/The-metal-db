@@ -1,0 +1,67 @@
+.homeContainer {
+  background-color: #000000;
+  height: 100vh;
+  width: 100vw; }
+
+.signupContainer {
+  background-color: #000000;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.formWindow {
+  background-color: #3c415cb8;
+  height: 80vh;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ece6e6; }
+
+.navContainer {
+  display: flex;
+  width: 100%;
+  background-color: teal; }
+
+.nav {
+  display: flex;
+  width: 95%;
+  height: 2em;
+  /* margin: 1rem; */
+  padding: 1rem;
+  background-color: teal;
+  border-radius: 0.75rem;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+  list-style-type: none; }
+
+.navProfileContainer {
+  display: flex;
+  width: 100%;
+  background-color: teal; }
+
+.navProfile {
+  display: flex;
+  width: 95%;
+  height: 2em;
+  /* margin: 1rem; */
+  padding: 1rem;
+  background-color: teal;
+  border-radius: 0.75rem;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+  list-style-type: none; }
+
+li a {
+  text-decoration: unset;
+  width: 70%;
+  padding: 1rem;
+  color: var(--text-color);
+  font-family: 'Orbitron', sans-serif;
+  /* font-weight: bold; */ }
