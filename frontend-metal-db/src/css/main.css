@@ -13,9 +13,10 @@
 
 .formWindow {
   background-color: #3c415cb8;
-  height: 80vh;
-  width: 50vw;
+  height: 100vh;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #ece6e6; }
@@ -29,7 +30,6 @@
   display: flex;
   width: 95%;
   height: 2em;
-  /* margin: 1rem; */
   padding: 1rem;
   background-color: teal;
   border-radius: 0.75rem;
@@ -65,3 +65,13 @@ li a {
   color: var(--text-color);
   font-family: 'Orbitron', sans-serif;
   /* font-weight: bold; */ }
+
+.headerView {
+  height: 8em;
+  background-color: yellow; }
+
+.headerContainer {
+  width: 100%;
+  padding: 1rem;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif; }
