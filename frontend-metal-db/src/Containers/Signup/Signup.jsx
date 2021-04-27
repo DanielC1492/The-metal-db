@@ -44,6 +44,8 @@ const Signup = (props) => {
             country: user.country
         };
 
+        console.log(body)
+
 
         //Error management
 
@@ -57,8 +59,9 @@ const Signup = (props) => {
             return;
         }
 
-        const data = await axios.post('http://localhost:3000/users', body)
-        console.log(data)
+        const data = await axios.post('http://localhost:3000/api/register', body)
+        console.log(data);
+
 
         return setTimeout(() => {
             history.push('/login')
