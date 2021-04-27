@@ -47,13 +47,13 @@ const Signup = (props) => {
         // console.log(body)
 
 
-        // //Error management
+        //Error management
 
-        // setMessage('');
+        setMessage('');
 
-        // let errorMessage = checkError(body);
+        let errorMessage = checkError(body);
         
-        // setMessage(errorMessage);
+        setMessage(errorMessage);
 
         // if(errorMessage){
         //     return;

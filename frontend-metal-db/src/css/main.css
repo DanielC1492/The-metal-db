@@ -1,7 +1,66 @@
 .homeContainer {
   background-color: #000000;
   height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+
+.leftMid {
+  background-color: rgba(22, 22, 22, 0.803);
+  height: 100vh;
   width: 100vw; }
+
+.leftTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 50vw; }
+
+.search {
+  height: 20rem;
+  width: 20rem;
+  background-color: #3c415cb8; }
+  .search:hover {
+    height: 22rem;
+    width: 22rem;
+    transition: 0.2s; }
+
+.leftBot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 50vw; }
+
+.weeklySugest {
+  height: 20rem;
+  width: 40rem;
+  background-color: #3c415cb8;
+  transition: 0.2s; }
+  .weeklySugest:hover {
+    height: 22rem;
+    width: 42rem;
+    transition: 0.2s; }
+
+.rightMid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(22, 22, 22, 0.803);
+  height: 100vh;
+  width: 100vw; }
+
+.topBands {
+  height: 50rem;
+  width: 50rem;
+  background-color: #3c415cb8;
+  transition: 0.2s; }
+  .topBands:hover {
+    height: 52rem;
+    width: 52rem;
+    transition: 0.2s; }
 
 .signupContainer {
   background-color: #000000;
@@ -23,7 +82,7 @@
 
 .navContainer {
   display: flex;
-  width: 100%;
+  width: 100vw;
   background-color: teal; }
 
 .nav {
