@@ -44,22 +44,22 @@ const Signup = (props) => {
             country: user.country
         };
 
-        console.log(body)
+        // console.log(body)
 
 
-        //Error management
+        // //Error management
 
-        setMessage('');
+        // setMessage('');
 
-        let errorMessage = checkError(user);
+        // let errorMessage = checkError(body);
         
-        setMessage(errorMessage);
+        // setMessage(errorMessage);
 
-        if(errorMessage){
-            return;
-        }
+        // if(errorMessage){
+        //     return;
+        // }
 
-        const data = await axios.post('http://localhost:3000/api/register', body)
+        const data = await axios.post('http://localhost:8000/api/register', user)
         console.log(data);
 
 

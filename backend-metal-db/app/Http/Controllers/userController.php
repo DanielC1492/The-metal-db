@@ -63,10 +63,6 @@ class UserController extends Controller
             return $error;
         }
     }
-    
-
-
-
 
     public function loginUser(Request $request){
 
@@ -108,18 +104,18 @@ class UserController extends Controller
 
     public function updateUser(Request $request){
         
-        $name = $request->input('name');
-        $phone = $request-> input('phone');
-        $adress = $request-> input('adress');
+        $nickname = $request->input('nickname');
+        $name = $request-> input('name');
+        $country = $request-> input('country');
         
         $userId = $request->input('id');
         try{
 
         return [User:: where('id','=',$userId)->update(
             [
-                'name' => $name,
-                'phone' =>$phone,
-                'adress'=>$adress
+                'nickname' => $nickname,
+                'name' =>$name,
+                'country'=>$country
             ]),'Success'=>"Usuario Actualizado Con Exito"];
        }catch(QueryException $error){
         return $error;
