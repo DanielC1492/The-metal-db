@@ -21,7 +21,8 @@
 .search {
   height: 20rem;
   width: 20rem;
-  background-color: #3c415cb8; }
+  background-color: #3c415cb8;
+  border-radius: 2em; }
   .search:hover {
     height: 22rem;
     width: 22rem;
@@ -38,7 +39,8 @@
   height: 20rem;
   width: 40rem;
   background-color: #3c415cb8;
-  transition: 0.2s; }
+  transition: 0.2s;
+  border-radius: 2em; }
   .weeklySugest:hover {
     height: 22rem;
     width: 42rem;
@@ -56,33 +58,45 @@
   height: 50rem;
   width: 50rem;
   background-color: #3c415cb8;
-  transition: 0.2s; }
+  transition: 0.2s;
+  border-radius: 2em; }
   .topBands:hover {
     height: 52rem;
     width: 52rem;
     transition: 0.2s; }
 
-.signupContainer {
-  background-color: #000000;
+.black {
+  background-color: rgba(22, 22, 22, 0.803);
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  opacity: 100%;
   justify-content: center;
   align-items: center; }
 
 .formWindow {
   background-color: #3c415cb8;
-  height: 100vh;
-  width: 100vw;
+  height: 37em;
+  width: 40em;
+  box-shadow: 0.2em 0.3em 0.3em 0.3em rgba(0, 0, 0, 0.247);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #ece6e6; }
+  color: #ece6e6;
+  border-radius: 2em; }
+
+.signupInputs {
+  height: 2em;
+  width: 30em;
+  border-radius: 2em; }
 
 .navContainer {
   display: flex;
   width: 100vw;
+  height: 10vh;
   background-color: #b4a5a5; }
 
 .nav {

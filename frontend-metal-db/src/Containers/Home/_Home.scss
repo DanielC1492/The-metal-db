@@ -32,7 +32,8 @@
         height: 22rem;
         width: 22rem;
         transition: $inOut;
-    }   
+    } 
+    border-radius: $radius;  
 }
 
 .leftBot{
@@ -53,7 +54,8 @@
         height: 22rem;
         width: 42rem;
         transition: $inOut;
-    }   
+    }
+    border-radius: $radius;   
 }
 
 .rightMid{
@@ -71,7 +73,7 @@
     width: 50rem;
     background-color: $color3;
     transition: $inOut;
-
+    border-radius: $radius;
     &:hover{
         height: 52rem;
         width: 52rem;

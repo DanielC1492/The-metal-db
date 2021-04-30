@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 
 const Navbar = () => {
     return (
-        <div className="navContainer" >         
+        <div className="navContainer">         
             <ul className="nav">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/login">Login</Link></li>
@@ -28,7 +28,7 @@ const NavbarProfile = () => {
 
 const NavbarAdmin = () => {
     return (
-        <div>
+        <div /*style={{ backgroundImage: `url(${bannerImg})`}}*/>
             <div>
                 <ul className="nav">
                     <li><Link to="/allAppointments">All Appointments</Link></li>

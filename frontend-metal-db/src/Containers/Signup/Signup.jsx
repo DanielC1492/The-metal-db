@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import checkError from '../../tools/error.handlers';
 import { Navbar } from '../../Components/Navbar/Navbar';
+import background from '../../img/background.jpg';
 
 
 const Signup = (props) => {
@@ -73,73 +74,80 @@ const Signup = (props) => {
     return (
         <>
         <Navbar/>
-        <div className="signupContainer">
-            
+        <div className="signupContainer" style={{ backgroundImage: `url(${background})`}}>
+            <div className='black'>
 
-            <pre>{JSON.stringify(user, null,2)}</pre>
+                {/* <pre>{JSON.stringify(user, null,2)}</pre> */}
 
-            <div className="formWindow">
-                <p>Nickame:</p>
-                <input 
-                    type="text" 
-                    maxLength="30" 
-                    placeholder="maiden666" 
-                    name="nickname" 
-                    onChange={stateHandler} 
-                    onKeyDown={handleOnKeyDown}/>
+                <div className="formWindow">
+                    <p>Nickame:</p>
+                    <input
+                        className='signupInputs' 
+                        type="text" 
+                        maxLength="30" 
+                        placeholder="maiden666" 
+                        name="nickname" 
+                        onChange={stateHandler} 
+                        onKeyDown={handleOnKeyDown}/>
 
-                <p>Password:</p>
-                <input 
-                    type="password" 
-                    maxLength="30" 
-                    placeholder="Represen23" 
-                    name="password" 
-                    onChange={stateHandler} 
-                    onKeyDown={handleOnKeyDown}/>
+                    <p>Password:</p>
+                    <input
+                        className='signupInputs' 
+                        type="password" 
+                        maxLength="30" 
+                        placeholder="Represen23" 
+                        name="password" 
+                        onChange={stateHandler} 
+                        onKeyDown={handleOnKeyDown}/>
 
-                <p>Repeat password:</p>
-                <input 
-                    type="password" 
-                    maxLength="30" 
-                    placeholder="Represen23"
-                    target = 'password'
-                    name="repeatPassword" 
-                    onChange={stateHandler} 
-                    onKeyDown={handleOnKeyDown}/>
-                    
-                <p>Name:</p>
-                <input 
-                    type="text" 
-                    maxLength="30" 
-                    placeholder="Steve Harris" 
-                    name="name" 
-                    onChange={stateHandler} 
-                    onKeyDown={handleOnKeyDown}/>
+                    <p>Repeat password:</p>
+                    <input 
+                        className='signupInputs'
+                        type="password" 
+                        maxLength="30" 
+                        placeholder="Represen23"
+                        target = 'password'
+                        name="repeatPassword" 
+                        onChange={stateHandler} 
+                        onKeyDown={handleOnKeyDown}/>
+                        
+                    <p>Name:</p>
+                    <input
+                        className='signupInputs'
+                        type="text" 
+                        maxLength="30" 
+                        placeholder="Steve Harris" 
+                        name="name" 
+                        onChange={stateHandler} 
+                        onKeyDown={handleOnKeyDown}/>
 
-                <p>Email:</p>
-                <input 
-                    type="email" 
-                    maxLength="50" 
-                    placeholder="maiden666@gmail.com" 
-                    name="email" 
-                    onChange={stateHandler} 
-                    onKeyDown={handleOnKeyDown}/>
+                    <p>Email:</p>
+                    <input 
+                        className='signupInputs'
+                        type="email" 
+                        maxLength="50" 
+                        placeholder="maiden666@gmail.com" 
+                        name="email" 
+                        onChange={stateHandler} 
+                        onKeyDown={handleOnKeyDown}/>
 
-                <p>Country:</p>
-                <input 
-                    type="text" 
-                    maxLength="200" 
-                    placeholder="Spain" 
-                    name="country" 
-                    onChange={stateHandler} 
-                    onKeyDown={handleOnKeyDown}/>
+                    <p>Country:</p>
+                    <input
+                        className='signupInputs' 
+                        type="text" 
+                        maxLength="200" 
+                        placeholder="Spain" 
+                        name="country" 
+                        onChange={stateHandler} 
+                        onKeyDown={handleOnKeyDown}/>
 
-                <button 
-                    className='loginBtn' 
-                    onClick={()=> sendData()}>Send</button>
+                    <button 
+                        className='loginBtn' 
+                        onClick={()=> sendData()}>Send</button>
+                </div>
+
+                <div className='errorMessage'>{message}</div>
             </div>
-
-            <div className='errorMessage'>{message}</div>
         </div>
         </>
     )

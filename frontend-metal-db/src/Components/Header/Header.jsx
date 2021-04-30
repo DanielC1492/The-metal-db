@@ -1,6 +1,6 @@
 import React from 'react';
 // import {useHistory} from 'react-router-dom';
-import Pianoheader from '../../img/piano-header.jpg';
+// import Pianoheader from '../../img/piano-header.jpg';
 // import { connect } from 'react-redux';
 // import { LOGOUT } from '../../redux/types/userTypes';
 // import { ADMINLOGOUT } from '../../redux/types/adminTypes'

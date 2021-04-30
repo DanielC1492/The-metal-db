@@ -3,7 +3,7 @@ import { Navbar } from '../../Components/Navbar/Navbar';
 import  Dropdown  from '../../Components/Dropdown/Dropdown';
 import axios from 'axios';
 import Header from '../../Components/Header/Header';
-import headerImg from '../../img/the-music-db-header.jpg';
+import background from '../../img/background.jpg';
 // import  Credentials  from '../../Credentials';
 
 const Home = () => {
@@ -118,7 +118,7 @@ const Home = () => {
     <>
     <Header/>
         <Navbar/>
-        <div className='homeContainer' style={{ backgroundImage: `url(${headerImg})`}}>
+        <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
             <div className='leftMid'>
                 <div className='leftTop'>
                     <div className='search'>
@@ -136,7 +136,13 @@ const Home = () => {
                 
             </div>
             <div className='rightMid'>
-                <div className='topBands'></div>
+                <div className='topBands'>
+                  <div className='band'>
+                    <div className='bandImg'></div>
+                    <div className='Name'></div>
+                  </div>
+
+                </div>
             </div>
         </div>
 

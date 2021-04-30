@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import Navar, { Navbar } from '../../Components/Navbar/Navbar';
-import headerImg from '../../img/the-music-db-header.jpg';
+import { Navbar } from '../../Components/Navbar/Navbar';
+import background from '../../img/background.jpg';
 // import { connect } from 'react-redux';
 // import { LOGIN } from "../../redux/types/userTypes";
 // import { ADMINLOGIN } from "../../redux/types/adminTypes";
@@ -94,7 +94,7 @@ const Login = (props) =>{
     return(
         <>
         <Navbar/>
-        <div className='loginContainer' style={{ backgroundImage: `url(${headerImg})`}} >
+        <div className='loginContainer' style={{ backgroundImage: `url(${background})`}} >
             <div className='black'>
                 <div className='cardLogin'>
                     <p>Email :</p>
