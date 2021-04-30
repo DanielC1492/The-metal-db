@@ -122,7 +122,7 @@ const Home = () => {
             <div className='leftMid'>
                 <div className='leftTop'>
                     <div className='search'>
-                        <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={getGenres} />
+                        <Dropdown className='genreDropdown' label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={getGenres} />
                         { <Dropdown options={genres}/>}
                         <button type='submit'>
                             Search

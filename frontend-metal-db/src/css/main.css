@@ -19,6 +19,28 @@
   width: 50vw; }
 
 .search {
+  background-color: #3c415cb8;
+  width: 40em;
+  height: 37em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2em;
+  box-shadow: 0.2em 0.3em 0.3em 0.3em rgba(0, 0, 0, 0.247);
+  margin: auto;
+  font-family: 'Orbitron', sans-serif;
+  color: #b4a5a5; }
+
+.genreDropdown {
+  justify-self: center;
+  align-self: center;
+  width: 30em;
+  height: 2em;
+  border-radius: 2em;
+  outline-width: 0; }
+
+.search {
   height: 20rem;
   width: 20rem;
   background-color: #3c415cb8;
