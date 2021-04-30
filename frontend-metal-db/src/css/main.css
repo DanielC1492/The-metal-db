@@ -83,14 +83,14 @@
 .navContainer {
   display: flex;
   width: 100vw;
-  background-color: teal; }
+  background-color: #b4a5a5; }
 
 .nav {
   display: flex;
   width: 95%;
   height: 2em;
   padding: 1rem;
-  background-color: teal;
+  background-color: #b4a5a5;
   border-radius: 0.75rem;
   justify-content: space-around;
   align-items: center;
@@ -101,7 +101,7 @@
 .navProfileContainer {
   display: flex;
   width: 100%;
-  background-color: teal; }
+  background-color: #b4a5a5; }
 
 .navProfile {
   display: flex;
@@ -123,7 +123,7 @@ li a {
   padding: 1rem;
   color: var(--text-color);
   font-family: 'Orbitron', sans-serif;
-  /* font-weight: bold; */ }
+  font-weight: bold; }
 
 .headerView {
   height: 8em;
@@ -131,45 +131,44 @@ li a {
 
 .headerContainer {
   width: 100%;
-  padding: 1rem;
   cursor: pointer;
   font-family: 'Orbitron', sans-serif; }
 
-.viewLogin {
+.black {
+  background-color: rgba(22, 22, 22, 0.803);
   height: 100vh;
   width: 100vw;
-  background-color: white;
   display: flex;
-  opacity: 1;
-  align-content: center;
+  flex-direction: row;
   justify-content: center; }
 
 .cardLogin {
-  background-color: #ffffff;
-  width: 25em;
-  height: 23em;
+  background-color: #3c415cb8;
+  width: 40em;
+  height: 37em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   border-radius: 2em;
   box-shadow: 0.2em 0.3em 0.3em 0.3em rgba(0, 0, 0, 0.247);
   margin: auto;
-  font-family: 'Orbitron', sans-serif; }
+  font-family: 'Orbitron', sans-serif;
+  color: #b4a5a5; }
 
 .emailInput {
   justify-self: center;
   align-self: center;
-  width: 15em;
-  height: 1em;
+  width: 30em;
+  height: 2em;
   border-radius: 2em;
   outline-width: 0; }
 
 .passInput {
   justify-self: center;
   align-self: center;
-  width: 15em;
-  height: 1em;
+  width: 30em;
+  height: 2em;
   border-radius: 2em;
   outline-width: 0; }
 
@@ -180,10 +179,11 @@ li a {
 
 .showPW {
   justify-self: center;
-  align-self: center; }
+  align-self: center;
+  height: 1.5em; }
 
 .showPWText {
-  font-size: 0.7em; }
+  font-size: 1.5em; }
 
 .loginBtn {
   justify-self: center;
@@ -194,7 +194,7 @@ li a {
   box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.247); }
 
 .createAccount {
-  color: #050505;
+  color: #b4a5a5;
   cursor: pointer; }
 
 .createAccount:local-link {
@@ -204,7 +204,7 @@ li a {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.5em; }
+  margin-top: 1em; }
 
 .buttonLog {
   display: flex;

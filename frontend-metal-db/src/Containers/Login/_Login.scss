@@ -1,36 +1,34 @@
-.viewLogin {
-    
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(255, 255, 255);
-    display:flex;
-    opacity: 1;
-    align-content: center;
+
+.black{
+    background-color: $black;
+    height: $height;
+    width: $width;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    
 }
 
 .cardLogin {
-    background-color: #ffffff;
-    width: 25em;
-    height: 23em;
+    background-color: $color3;
+    width: 40em;
+    height: 37em;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+
     border-radius: 2em;    
     box-shadow: 0.2em 0.3em 0.3em 0.3em rgba(0, 0, 0, 0.247);
     margin: auto;
     font-family: 'Orbitron', sans-serif;
-
-    
+    color: $color4; 
 }
 
 .emailInput {
     justify-self: center;
     align-self: center;
-    width: 15em;
-    height: 1em;
+    width: 30em;
+    height: 2em;
     border-radius: 2em;
     outline-width: 0;
 }
@@ -38,8 +36,8 @@
 .passInput {
     justify-self: center;
     align-self: center;
-    width: 15em;
-    height: 1em;
+    width: 30em;
+    height: 2em;
     border-radius: 2em;
     outline-width: 0;
 }
@@ -53,11 +51,12 @@
 .showPW {
     justify-self: center;
     align-self: center;
+    height: 1.5em;
 
 }
 
 .showPWText {
-    font-size: 0.7em;
+    font-size: 1.5em;
 
 }
 
@@ -72,19 +71,20 @@
 }
 
 .createAccount {
-    color: rgb(5, 5, 5);
+    color: $color4;
     cursor: pointer;
 }
 
 .createAccount:local-link {
     color: rgb(2, 27, 248);
+
 }
 
 .button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.5em;
+    margin-top: 1em;
 }
 
 .buttonLog {

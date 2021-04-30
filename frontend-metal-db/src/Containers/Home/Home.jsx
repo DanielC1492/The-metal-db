@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../Components/Navbar/Navbar';
 import  Dropdown  from '../../Components/Dropdown/Dropdown';
 import axios from 'axios';
+import Header from '../../Components/Header/Header';
+import headerImg from '../../img/the-music-db-header.jpg';
 // import  Credentials  from '../../Credentials';
 
 const Home = () => {
@@ -9,7 +11,7 @@ const Home = () => {
 
   const Credentials = () => {
 
-    return {
+    return { 
         ClientId: '71db2d6bf70e49f183678f5191ff85d0',
         ClientSecret: '09ba3e8a949141ed978863c079e8c969'
     }
@@ -114,8 +116,9 @@ const Home = () => {
 
     return (
     <>
+    <Header/>
         <Navbar/>
-        <div className='homeContainer'>
+        <div className='homeContainer' style={{ backgroundImage: `url(${headerImg})`}}>
             <div className='leftMid'>
                 <div className='leftTop'>
                     <div className='search'>

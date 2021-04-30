@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import Navar, { Navbar } from '../../Components/Navbar/Navbar';
+import headerImg from '../../img/the-music-db-header.jpg';
 // import { connect } from 'react-redux';
 // import { LOGIN } from "../../redux/types/userTypes";
 // import { ADMINLOGIN } from "../../redux/types/adminTypes";
@@ -90,30 +92,35 @@ const Login = (props) =>{
     }
 
     return(
-        <div className='viewLogin'>
-            <div className='cardLogin'>
-                <p>Email :</p>
-                <input type='text' className='emailInput' maxLength='50' placeholder="" name="email" onChange={stateHandler}></input>
-                <p>Password :</p>
-                <input type={password.hideShow} className='passInput' maxLength='50' placeholder="" name="password" onChange={stateHandler} onKeyDown={handleOnKeyDown} ></input>
-                <div className='showPWDiv'>
-                <input checked= {checkbox} type= 'checkbox' onChange={() => toggle()} className='showPW' name='showPS'></input>
-                <p className='showPWText'>Show Password</p>
+        <>
+        <Navbar/>
+        <div className='loginContainer' style={{ backgroundImage: `url(${headerImg})`}} >
+            <div className='black'>
+                <div className='cardLogin'>
+                    <p>Email :</p>
+                    <input type='text' className='emailInput' maxLength='50' placeholder="" name="email" onChange={stateHandler}></input>
+                    <p>Password :</p>
+                    <input type={password.hideShow} className='passInput' maxLength='50' placeholder="" name="password" onChange={stateHandler} onKeyDown={handleOnKeyDown} ></input>
+                    <div className='showPWDiv'>
+                    <input checked= {checkbox} type= 'checkbox' onChange={() => toggle()} className='showPW' name='showPS'></input>
+                    <p className='showPWText'>Show Password</p>
+                    </div>
+                    {/* <select className="select" name="userType" defaultValue={'DEFAULT'} onChange={stateHandler}>
+                        <option value="Client">Client</option>
+                        <option value="Admin">Admin</option>
+                    </select> */}
+                    <button className='loginBtn' onClick={()=> sendData()}>Login</button>
+                    <div onClick={() => redirect()} className='createAccount'>
+                    Not a client? Sign up.
+                    </div>
+                    <div className="button">
+                        {/* <Boton name='Back'  destination=''/> */}
+                    </div>
+                    <div className='errorMessage'>{message}</div>
                 </div>
-                {/* <select className="select" name="userType" defaultValue={'DEFAULT'} onChange={stateHandler}>
-                    <option value="Client">Client</option>
-                    <option value="Admin">Admin</option>
-                </select> */}
-                <button className='loginBtn' onClick={()=> sendData()}>Login</button>
-                <div onClick={() => redirect()} className='createAccount'>
-                Not a client? Sign up.
-                </div>
-                <div className="button">
-                    {/* <Boton name='Back'  destination=''/> */}
-                </div>
-                <div className='errorMessage'>{message}</div>
-            </div>  
+            </div>      
         </div>
+        </>
     )
 }
 export default Login

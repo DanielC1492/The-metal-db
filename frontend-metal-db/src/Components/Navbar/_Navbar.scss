@@ -2,7 +2,7 @@
 .navContainer{
     display: flex;
     width: 100vw;
-    background-color: teal;
+    background-color: $color4;
 }
 
 .nav {
@@ -10,7 +10,7 @@
     width: 95%;
     height: 2em;
     padding: 1rem;
-    background-color:teal;
+    background-color:$color4;
     border-radius: 0.75rem;
     justify-content: space-around;
     align-items: center;
@@ -23,7 +23,7 @@
 .navProfileContainer{
     display: flex;
     width: 100%;
-    background-color: teal;
+    background-color: $color4;
 }
 
 .navProfile {
@@ -48,5 +48,5 @@ li a {
     padding: 1rem; 
     color: var(--text-color);
     font-family: 'Orbitron', sans-serif;
-    /* font-weight: bold; */
+    font-weight: bold; 
 } 
