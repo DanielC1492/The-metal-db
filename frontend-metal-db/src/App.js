@@ -2,7 +2,9 @@ import {BrowserRouter,Switch, Route} from 'react-router-dom';
 import '../src/css/main.css';
 import Home from './Containers/Home/Home';
 import Login from './Containers/Login/Login';
+import Shop from './Containers/Shop/Shop';
 import Signup from './Containers/Signup/Signup';
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
           <Route path='/' exact component={Home}/>
           <Route path='/login' exact component={Login}/>
           <Route path='/signup' exact component={Signup}/>
+          <Route path='/shop' exact component={Shop}/>
           {/* <Route path='/profile' exact component={Profile} /> */}
         </Switch>
       </BrowserRouter>

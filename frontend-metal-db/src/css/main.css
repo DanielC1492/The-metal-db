@@ -87,9 +87,6 @@
     width: 52rem;
     transition: 0.2s; }
 
-.dropdownDiv {
-  margin: solid red 1em; }
-
 .black {
   background-color: rgba(22, 22, 22, 0.803);
   height: 100vh;
@@ -260,3 +257,34 @@ li a {
 
 .errorMessage {
   font-size: 0.8em; }
+
+.black {
+  background-color: rgba(22, 22, 22, 0.803);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row; }
+
+.banner {
+  height: 10em;
+  background-color: aqua; }
+
+.productsDiv {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center; }
+
+.mugDiv {
+  height: 37em;
+  width: 40em;
+  background-color: #3c415cb8;
+  border-radius: 2em; }
+
+.tshirtDiv {
+  height: 37em;
+  width: 40em;
+  background-color: #3c415cb8;
+  border-radius: 2em; }

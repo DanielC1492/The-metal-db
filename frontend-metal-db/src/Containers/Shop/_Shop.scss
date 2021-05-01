@@ -1,0 +1,39 @@
+
+.black{
+    background-color: $black;
+    height: $height;
+    width: $width;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.banner{
+    height: 10em;
+    background-color: aqua;
+}
+
+.productsDiv{
+    height: $height;
+    width: $width;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+ 
+}
+
+
+.mugDiv{
+    height: $formHeigh;
+    width: $formWidth;
+    background-color: $color3;
+    border-radius: $radius;
+}
+
+.tshirtDiv{
+    height: $formHeigh;
+    width: $formWidth;
+    background-color: $color3;
+    border-radius: $radius;
+}
