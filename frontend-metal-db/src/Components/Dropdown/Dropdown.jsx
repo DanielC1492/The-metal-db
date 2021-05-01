@@ -1,6 +1,6 @@
 import react from 'react';
 
-const Dropdown = props => {    
+const Dropdown = (props) => {    
 
     const dropdownChanged = e => {
         props.changed(e.target.value);

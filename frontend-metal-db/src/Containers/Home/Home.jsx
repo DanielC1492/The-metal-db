@@ -5,6 +5,7 @@ import axios from 'axios';
 import Header from '../../Components/Header/Header';
 import background from '../../img/background.jpg';
 // import  Credentials  from '../../Credentials';
+// import Countries from '../../Components/CountrySelector/CountrySelector';
 
 const Home = () => {
 
@@ -13,9 +14,9 @@ const Home = () => {
 
     return { 
         ClientId: '71db2d6bf70e49f183678f5191ff85d0',
-        ClientSecret: '1c32d5f87980445fa906aba039a1171b'
+        ClientSecret: '40927d8535094edca900e7e42337982d'
     }
-}
+  }
 
 
     const spotify = Credentials();
@@ -34,7 +35,7 @@ const Home = () => {
 
     useEffect(() => {
          getToken();
-                      
+         getGenres();             
         }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret]); 
    
         // console.log(carlosval);
@@ -49,28 +50,34 @@ const Home = () => {
             data: 'grant_type=client_credentials',
             method: 'POST'
           })
-          setToken(token);
-          getGenres();
-
+          
+          
+          console.log(token);    
         }
-
-      const getGenres = val => {
-        setGenres({
-          selectedGenre: val, 
-          listOfGenresFromAPI: genres.listOfGenresFromAPI
-        });   
-        console.log(token)
-        const getGenres = async (token) => {
-        const allGenres = await axios.get('https://api.spotify.com/v1/browse/categories?locale=sv_US',{
         
-          method: 'GET',
-          headers: { 'Authorization' : 'Bearer ' + token}
-        });
+        const getGenres = val => {
+          setToken(token);
+          setGenres({
+            selectedGenre: val, 
+            listOfGenresFromAPI: genres.listOfGenresFromAPI
+          });
+          
+          // const token1 = 'BQDfNyhqlQK1Rw1yzvINcKVd2d5AN5i7XCkFHhYgjFvHHo-q06ld87Hw9N0BKaeUobyOiIMSJjWffn8Q3zc';
+          const getGenres = async () => {
+          const allGenres = await axios.get('https://api.spotify.com/v1/browse/categories?locale=sv_US',{
+          
+            method: 'GET',
+            headers: { 'Authorization' : 'Bearer ' + token}
+            
+          });
+          console.log(allGenres);
+          getGenres();
+        };
         console.log(token)
-        console.log(allGenres);
-        getGenres();
-      };
+        
       }
+
+      
 
     return (
     <>
@@ -80,6 +87,7 @@ const Home = () => {
             <div className='leftMid'>
                 <div className='leftTop'>
                     <div className='search'>
+                       
                         <Dropdown option={data}></Dropdown>
 
                         <button type='submit'>   
