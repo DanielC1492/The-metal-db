@@ -87,6 +87,9 @@
     width: 52rem;
     transition: 0.2s; }
 
+.dropdownDiv {
+  margin: solid red 1em; }
+
 .black {
   background-color: rgba(22, 22, 22, 0.803);
   height: 100vh;

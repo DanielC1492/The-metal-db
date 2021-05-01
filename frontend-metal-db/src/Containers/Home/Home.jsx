@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '../../Components/Navbar/Navbar';
-import  Dropdown  from '../../Components/Dropdown/Dropdown';
+import Dropdown from '../../Components/Dropdown/Dropdown';
 import axios from 'axios';
 import Header from '../../Components/Header/Header';
 import background from '../../img/background.jpg';
@@ -13,7 +13,7 @@ const Home = () => {
 
     return { 
         ClientId: '71db2d6bf70e49f183678f5191ff85d0',
-        ClientSecret: '09ba3e8a949141ed978863c079e8c969'
+        ClientSecret: '1c32d5f87980445fa906aba039a1171b'
     }
 }
 
@@ -34,7 +34,7 @@ const Home = () => {
 
     useEffect(() => {
          getToken();
-             
+                      
         }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret]); 
    
         // console.log(carlosval);
@@ -49,21 +49,69 @@ const Home = () => {
             data: 'grant_type=client_credentials',
             method: 'POST'
           })
-          console.log(token);
           setToken(token);
           getGenres();
-          
-          // const refreshToken = await axios('https://accounts.spotify.com/api/token',{
-          //   headers: {
-          //     'Content-Type' : 'application/x-www-form-urlencoded',
-          //     'Authorization': 'Basic' + btoa(spotify.ClientId + ':' + spotify.ClientId),
-              
-          //   }
-
-                
-          // })
 
         }
+
+      const getGenres = val => {
+        setGenres({
+          selectedGenre: val, 
+          listOfGenresFromAPI: genres.listOfGenresFromAPI
+        });   
+        console.log(token)
+        const getGenres = async (token) => {
+        const allGenres = await axios.get('https://api.spotify.com/v1/browse/categories?locale=sv_US',{
+        
+          method: 'GET',
+          headers: { 'Authorization' : 'Bearer ' + token}
+        });
+        console.log(token)
+        console.log(allGenres);
+        getGenres();
+      };
+      }
+
+    return (
+    <>
+    <Header/>
+        <Navbar/>
+        <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
+            <div className='leftMid'>
+                <div className='leftTop'>
+                    <div className='search'>
+                        <Dropdown option={data}></Dropdown>
+
+                        <button type='submit'>   
+                            Search
+                        </button>
+                    </div>
+                   
+                </div>
+                <div className='leftBot'>
+                    <div className='weeklySugest'></div>
+                </div>
+                
+            </div>
+            <div className='rightMid'>
+                <div className='topBands'>
+                  <div className='band'>
+                    <div className='bandImg'></div>
+                    <div className='Name'></div>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+    </>
+    )
+}
+
+export default Home;
+
+
+
 
         // const refreshAuthToken = async() => {
         //   const refreshBody = querystring.stringify({
@@ -98,56 +146,13 @@ const Home = () => {
     
       // const token1 = 'BQB7_ifRburBHV771pBl34wVwPRyyA1zQ8Q4etO0T1blmuMBBWW5Q3fr2lobKWLfCXfS9s-naHsZK-W7tcc'
 
-      const getGenres = val => {
-        setGenres({
-          selectedGenre: val, 
-          listOfGenresFromAPI: genres.listOfGenresFromAPI
-        });
 
-      const getGenres = async (token) => {
-        const allGenres = await axios.get('https://api.spotify.com/v1/browse/categories?locale=sv_US',{
-        
-          headers: { 'Authorization' : 'Bearer ' + token}
+                // const refreshToken = await axios('https://accounts.spotify.com/api/token',{
+          //   headers: {
+          //     'Content-Type' : 'application/x-www-form-urlencoded',
+          //     'Authorization': 'Basic' + btoa(spotify.ClientId + ':' + spotify.ClientId),
+              
+          //   }
 
-        });
-        console.log(allGenres);
-      };
-      }
-
-    return (
-    <>
-    <Header/>
-        <Navbar/>
-        <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
-            <div className='leftMid'>
-                <div className='leftTop'>
-                    <div className='search'>
-                        <Dropdown className='genreDropdown' label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={getGenres} />
-                        { <Dropdown options={genres}/>}
-                        <button type='submit'>
-                            Search
-                        </button>
-                    </div>
-                   
-                </div>
-                <div className='leftBot'>
-                    <div className='weeklySugest'></div>
-                </div>
                 
-            </div>
-            <div className='rightMid'>
-                <div className='topBands'>
-                  <div className='band'>
-                    <div className='bandImg'></div>
-                    <div className='Name'></div>
-                  </div>
-
-                </div>
-            </div>
-        </div>
-
-    </>
-    )
-}
-
-export default Home;
+          // })

@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 
 const Dropdown = props => {    
 
@@ -10,9 +10,9 @@ const Dropdown = props => {
     return (
         <div className="dropdownDiv">     
             <label className="genreDropdown">{props.label}</label>       
-            <select value={props.selectedValue} onChange={dropdownChanged} className="form-control form-control-sm col-sm-10">
+            <select onChange={dropdownChanged} className="form-control form-control-sm col-sm-10">
                 <option key={0}>Select...</option>
-                {/* {props.options.map((item, idx) => <option key={idx + 1} value={item.id}>{item.name}</option>)} */}
+                {/* {props.data.map((item, idx) => <option key={idx + 1} value={item.id}>{item.name}</option>)} */}
             </select>            
         </div>
     );
