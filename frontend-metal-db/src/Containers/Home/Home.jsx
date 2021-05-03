@@ -4,6 +4,7 @@ import Dropdown from '../../Components/Dropdown/Dropdown';
 import axios from 'axios';
 import Header from '../../Components/Header/Header';
 import background from '../../img/background.jpg';
+import SpotifyService from '../../Services/Spotify.service';
 // import  Credentials  from '../../Credentials';
 // import Countries from '../../Components/CountrySelector/CountrySelector';
 
@@ -14,13 +15,13 @@ const Home = () => {
 
     return { 
         ClientId: '71db2d6bf70e49f183678f5191ff85d0',
-        ClientSecret: '40927d8535094edca900e7e42337982d'
+        ClientSecret: 'f5cb237a05c745b489dfa6119409fc75'
     }
   }
 
 
     const spotify = Credentials();
-    const [token, setToken] = useState('');
+    const [spotify_service, setSpotifyService] = useState(new SpotifyService(''));
     
     const [genres, setGenres] = useState({selectedGenre: '', listOfGenresFromAPI: []});
     const data = [
@@ -32,52 +33,28 @@ const Home = () => {
         {value: 6, name : 'F'},
         {value: 7, name : 'G'}
     ]
+    useEffect( async () => {
+      console.log('REFRESHING STATE');
+      const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
+      setSpotifyService(spotify_instance);
+      const genres = await spotify_instance.getGenres(); 
+      setGenres({
+        selectedGenre : '',
+        listOfGenresFromAPI: genres
+      });
+      console.log(genres);
+    },[]);
 
-    useEffect(() => {
-         getToken();
-         getGenres();             
-        }, [genres.selectedGenre, spotify.ClientId, spotify.ClientSecret]); 
-   
-        // console.log(carlosval);
-        
-        const getToken = async () => {
-          const token = await axios('https://accounts.spotify.com/api/token', {
-            headers: {
-              'Content-Type' : 'application/x-www-form-urlencoded',
-              'Authorization' : 'Basic ' + btoa(spotify.ClientId + ':' + spotify.ClientSecret) 
-            
-            },
-            data: 'grant_type=client_credentials',
-            method: 'POST'
-          })
-          
-          
-          console.log(token);    
-        }
-        
-        const getGenres = val => {
-          setToken(token);
-          setGenres({
-            selectedGenre: val, 
-            listOfGenresFromAPI: genres.listOfGenresFromAPI
-          });
-          
-          // const token1 = 'BQDfNyhqlQK1Rw1yzvINcKVd2d5AN5i7XCkFHhYgjFvHHo-q06ld87Hw9N0BKaeUobyOiIMSJjWffn8Q3zc';
-          const getGenres = async () => {
-          const allGenres = await axios.get('https://api.spotify.com/v1/browse/categories?locale=sv_US',{
-          
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-            
-          });
-          console.log(allGenres);
-          getGenres();
-        };
-        console.log(token)
-        
-      }
 
-      
+    const genreChanged = val => {
+      setGenres({
+        selectedGenre: val, 
+        listOfGenresFromAPI: genres.listOfGenresFromAPI
+      });
+  
+
+
+    }
 
     return (
     <>
@@ -88,7 +65,8 @@ const Home = () => {
                 <div className='leftTop'>
                     <div className='search'>
                        
-                        <Dropdown option={data}></Dropdown>
+                      <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
+                      <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
 
                         <button type='submit'>   
                             Search
@@ -117,50 +95,3 @@ const Home = () => {
 }
 
 export default Home;
-
-
-
-
-        // const refreshAuthToken = async() => {
-        //   const refreshBody = querystring.stringify({
-        //     grant_type: 'refresh_token',
-        //     refresh_token: refresh_token,
-        //   });
-        //   const req = request(
-        //     {
-        //       // Assuming you have this setup as: https://accounts.spotify.com/api/token
-        //       url: refresh_token_url, 
-        //       method: 'POST',
-        //       headers:{
-        //         // Authorization: Basic <base64 encoded client_id:client_secret>
-        //         'Authorization': token,
-        //         'Content-Type': 'application/x-www-form-urlencoded',
-        //         'Content-Length': Buffer.byteLength(refreshBody)
-        //       }
-        //     },
-        //     (err, res) => {
-        //       if (res) {
-        //         const resData = JSON.parse(res.body);
-        //         // Set new access tokens
-        //         access_token = resData.spotify;
-        //         // setup your Authorization token, e.g.
-        //         token = btoa(spotify);
-        //       } else if (err) {
-        //         // Handle error...
-        //       }
-        //     }
-        //   );
-        //   req.write(refreshBody); 
-    
-      // const token1 = 'BQB7_ifRburBHV771pBl34wVwPRyyA1zQ8Q4etO0T1blmuMBBWW5Q3fr2lobKWLfCXfS9s-naHsZK-W7tcc'
-
-
-                // const refreshToken = await axios('https://accounts.spotify.com/api/token',{
-          //   headers: {
-          //     'Content-Type' : 'application/x-www-form-urlencoded',
-          //     'Authorization': 'Basic' + btoa(spotify.ClientId + ':' + spotify.ClientId),
-              
-          //   }
-
-                
-          // })
