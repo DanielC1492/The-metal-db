@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+
 class SpotifyService {
     static ACCOUNTS_API_URL = "https://accounts.spotify.com";
     static API_URL = "https://api.spotify.com/v1";
@@ -39,6 +41,30 @@ class SpotifyService {
           console.log(genres_response)
           return genres_response.data.genres; 
     }
-}
 
+    searchArtist = async (inputName) => {
+        
+        const genres_response = await axios.get( SpotifyService.API_URL + `/recommendations/search?q=${inputName}&type=artist&limit=10&offset=5`,{
+      
+          method: 'GET',
+          headers: { 'Authorization' : 'Bearer ' + this.token}
+          
+        });
+        console.log(genres_response)
+        return genres_response.data.genres; 
+    }
+
+    getArtists = async (genreName) => {
+        console.log(genreName)
+        const artists_response = await axios.get( SpotifyService.API_URL + `/recommendations?seed_genres=${genreName}`,{
+            
+          method: 'GET',
+          headers: { 'Authorization' : 'Bearer ' + this.token}
+          
+        });
+        
+        console.log(artists_response.data.tracks.name)
+        return artists_response; 
+  }
+}
 export default SpotifyService;
