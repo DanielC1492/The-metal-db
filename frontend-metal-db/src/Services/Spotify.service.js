@@ -38,7 +38,7 @@ class SpotifyService {
             headers: { 'Authorization' : 'Bearer ' + this.token}
             
           });
-          console.log(genres_response)
+          // console.log(genres_response)
           return genres_response.data.genres; 
     }
 
@@ -65,6 +65,16 @@ class SpotifyService {
         
         console.log(artists_response.data.tracks.name)
         return artists_response; 
+  }
+  
+  getAnArtist = async () => {
+    const artist_response = await axios.get ( SpotifyService.API_URL + '/artists/2ye2Wgw4gimLv2eAKyk1NB',{
+
+      method: 'GET',
+      headers: { 'Authorization' : 'Bearer ' + this.token}
+    })
+    console.log (artist_response);
+    return artist_response;
   }
 }
 export default SpotifyService;

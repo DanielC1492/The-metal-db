@@ -75,12 +75,30 @@
     width: 40rem;
     background-color: $color3;
     transition: $inOut;
-    &:hover{
-        height: 22rem;
-        width: 42rem;
-        transition: $inOut;
-    }
-    border-radius: $radius;   
+
+    border-radius: $radius;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-evenly;   
+}
+
+.sugestRight{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: space-evenly;
+}
+
+.bandName{
+    font-size: xx-large;
+}
+
+.bandImg{
+    height: 10rem;
+    width: 10rem;
+    background-color: red;
+    border-radius: $radius;
 }
 
 .rightMid{

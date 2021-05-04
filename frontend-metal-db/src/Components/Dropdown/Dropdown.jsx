@@ -1,7 +1,7 @@
 import react from 'react';
 
 const Dropdown = (props) => {    
-    console.log(props);
+    // console.log(props);
     const dropdownChanged = e => {
         props.changed(e.target.value);
         

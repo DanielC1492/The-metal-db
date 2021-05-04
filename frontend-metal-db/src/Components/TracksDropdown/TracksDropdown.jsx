@@ -3,7 +3,7 @@ import React from 'react'
 
 const TracksDropdown = (props) => {
 
-    console.log(props);
+    // console.log(props);
     const dropdownModified = e => {
         props.changed(e.target.value);
         

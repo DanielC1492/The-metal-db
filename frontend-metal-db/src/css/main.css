@@ -62,11 +62,25 @@
   width: 40rem;
   background-color: #3c415cb8;
   transition: 0.2s;
+  border-radius: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly; }
+
+.sugestRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.bandName {
+  font-size: xx-large; }
+
+.bandImg {
+  height: 10rem;
+  width: 10rem;
+  background-color: red;
   border-radius: 2em; }
-  .weeklySugest:hover {
-    height: 22rem;
-    width: 42rem;
-    transition: 0.2s; }
 
 .rightMid {
   display: flex;

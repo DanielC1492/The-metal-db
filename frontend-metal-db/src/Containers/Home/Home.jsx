@@ -28,21 +28,22 @@ const Home = () => {
     const [query,setQuery] = useState('');
     const [genres, setGenres] = useState({selectedGenre: '', listOfGenresFromAPI: []});
     const [artists, setArtists] = useState({selectedArtist: '', listOfArtistsFromAPI: []});
+    const [artist, setArtist] = useState({artistSelect: '', selectedArtist: []});
 
     const search = () => {
       if (query != '') history.push(`${query}`);
   }
 
 
-    const data = [
-        {value: 1, name : 'A'},
-        {value: 2, name : 'B'},
-        {value: 3, name : 'C'},
-        {value: 4, name : 'D'},
-        {value: 5, name : 'E'},
-        {value: 6, name : 'F'},
-        {value: 7, name : 'G'}
-    ]
+    // const data = [
+    //     {value: 1, name : 'A'},
+    //     {value: 2, name : 'B'},
+    //     {value: 3, name : 'C'},
+    //     {value: 4, name : 'D'},
+    //     {value: 5, name : 'E'},
+    //     {value: 6, name : 'F'},
+    //     {value: 7, name : 'G'}
+    // ]
 
     
 
@@ -55,11 +56,24 @@ const Home = () => {
         selectedGenre : '',
         listOfGenresFromAPI: genres
       });
+      const weeklyArtist = async () => {
+       
+        const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
+        const artist = await spotify_instance.getAnArtist();
+        setArtist({
+          artistSelect : 'artist',
+          selectedArtist: artist
+        })
+        
+        
+      }
+      
+      weeklyArtist();
 
-      console.log(genres);
+      // console.log(genres);
   
     },[]);
-
+    
     const typeArtist = async () => {
       const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
       const inputArtist = await spotify_instance.searchArtist(inputArtist);
@@ -84,7 +98,8 @@ const Home = () => {
       
     })
     }
-    
+
+
     if(!genres.selectedGenre){
       console.log('ESTOY EN EL IF')
     
@@ -109,7 +124,7 @@ const Home = () => {
       })
     }
 
-    
+    console.log (artist);    
     return (
     <>
     <Header/>
@@ -129,15 +144,27 @@ const Home = () => {
                    
                 </div>
                 <div className='leftBot'>
-                    <div className='weeklySugest'></div>
+                  <div className='weeklySugest'>
+                      <div className='sugestLeft'>
+                        <div className='bandImg'>
+                          <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`}></img>
+                        </div>
+                      </div>
+                      <div classname='sugestRight'>
+                        <div className='sugestRightTop'>
+                          <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div>
+                        </div>
+                        <div className='sugestRightBot'>
+                          <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div>
+                        </div>   
+                      </div>          
+                  </div>
                 </div>
                 
             </div>
             <div className='rightMid'>
                 <div className='topBands'>
                   <div className='band'>
-                    <div className='bandImg'></div>
-                    <div className='Name'></div>
                   </div>
 
                 </div>
