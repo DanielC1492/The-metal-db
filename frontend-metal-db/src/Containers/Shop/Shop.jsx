@@ -27,7 +27,9 @@ const Shop = () => {
                                 </div>
                                 <div className='productBot'>
                                     <div className='productInfo'>
-                                            asdasdasdasd
+                                            Get a coffe,a tea.<br></br>
+                                            Get a beer if you want!<br></br>
+                                            With this mug you will carry the power of music while you get hidrated.      
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +47,9 @@ const Shop = () => {
                                 </div>
                                 <div className='productBot'>
                                     <div className='productInfo'>
-
+                                        The ultimate craft made by our top of the line artisans.<br></br>
+                                        This tee will show the world that you are part of the elite.<br></br>
+                                        You can choose color and size!!!
                                     </div>
                                 </div>
                                 

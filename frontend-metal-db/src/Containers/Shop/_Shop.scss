@@ -75,6 +75,8 @@
     width: 15rem;
     background-color: $color3;
     border-radius: $radius;
+    margin-top: 2em;
+    margin-left: 2em;
 }
 
 .namePrice{
@@ -84,6 +86,18 @@
     justify-content: space-evenly;
     width: $formWidth;
 
+}
+
+.productBot{
+    height: $halfFormHeigh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.productInfo{
+    font-size: large;
+    color: $color4;
 }
 
 

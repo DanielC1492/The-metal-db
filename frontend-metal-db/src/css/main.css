@@ -334,7 +334,9 @@ li a {
   height: 15rem;
   width: 15rem;
   background-color: #3c415cb8;
-  border-radius: 2em; }
+  border-radius: 2em;
+  margin-top: 2em;
+  margin-left: 2em; }
 
 .namePrice {
   display: flex;
@@ -342,3 +344,13 @@ li a {
   align-items: center;
   justify-content: space-evenly;
   width: 40em; }
+
+.productBot {
+  height: 18.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.productInfo {
+  font-size: large;
+  color: #b4a5a5; }
