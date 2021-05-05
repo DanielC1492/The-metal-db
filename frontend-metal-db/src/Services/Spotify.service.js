@@ -73,7 +73,7 @@ class SpotifyService {
       method: 'GET',
       headers: { 'Authorization' : 'Bearer ' + this.token}
     })
-    console.log (artist_response);
+    // console.log (artist_response);
     return artist_response;
   }
 }

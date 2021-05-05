@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
-import { Navbar } from '../../Components/Navbar/Navbar';
+import { Navbar, NavbarProfile } from '../../Components/Navbar/Navbar';
 import Dropdown from '../../Components/Dropdown/Dropdown';
-import axios from 'axios';
 import Header from '../../Components/Header/Header';
 import background from '../../img/background.jpg';
 import SpotifyService from '../../Services/Spotify.service';
@@ -10,7 +9,7 @@ import TracksDropdown from '../../Components/TracksDropdown/TracksDropdown';
 // import  Credentials  from '../../Credentials';
 // import Countries from '../../Components/CountrySelector/CountrySelector';
 
-const Home = () => {
+const Home = (props) => {
 
   let history = useHistory();
 
@@ -31,7 +30,7 @@ const Home = () => {
     const [artist, setArtist] = useState({artistSelect: '', selectedArtist: []});
 
     const search = () => {
-      if (query != '') history.push(`${query}`);
+      if (query !== '') history.push(`${query}`);
   }
 
 
@@ -48,6 +47,7 @@ const Home = () => {
     
 
     useEffect( async () => {
+      
       console.log('REFRESHING STATE');
       const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
       setSpotifyService(spotify_instance);
@@ -67,12 +67,12 @@ const Home = () => {
         
         
       }
-      
+      getBands();
       weeklyArtist();
 
       // console.log(genres);
   
-    },[]);
+    },[spotify.ClientId, spotify.ClientSecret]);
     
     const typeArtist = async () => {
       const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
@@ -100,12 +100,6 @@ const Home = () => {
     }
 
 
-    if(!genres.selectedGenre){
-      console.log('ESTOY EN EL IF')
-    
-    }else{
-      getBands();
-    } 
     
     const genreChanged = genreVal => {
       console.log(genreVal)
@@ -113,18 +107,18 @@ const Home = () => {
         selectedGenre: genreVal,
         listOfGenresFromAPI: genres.listOfGenresFromAPI
       });
-     
+      return genreVal;
     }
 
-    const artistChanged = val1 => {
-      
+    const artistChanged = artistVal => {
+      console.log(artistVal)
       setArtists({
-        selectedArtist: val1,
+        selectedArtist: artistVal,
         listOfArtistsFromAPI: artists.listOfArtistsFromAPI,
       })
     }
-
-    console.log (artist);    
+    
+    if(!props.user?.token){
     return (
     <>
     <Header/>
@@ -135,7 +129,8 @@ const Home = () => {
                     <div className='search'>
                        
                       <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
-                      <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/>
+                      {/* <Dropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged} /> */}
+                      {/* <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/> */}
                       <input type="search" className="searchArtist" placeholder="Search an artist..." onChange={(e)=>setQuery(e.target.value)} />
                         <button type='submit' onClick={search}>   
                             Search
@@ -147,15 +142,15 @@ const Home = () => {
                   <div className='weeklySugest'>
                       <div className='sugestLeft'>
                         <div className='bandImg'>
-                          <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`}></img>
+                          {/* <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`}></img> */}
                         </div>
                       </div>
                       <div classname='sugestRight'>
                         <div className='sugestRightTop'>
-                          <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div>
+                          {/* <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div> */}
                         </div>
                         <div className='sugestRightBot'>
-                          <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div>
+                          {/* <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div> */}
                         </div>   
                       </div>          
                   </div>
@@ -173,6 +168,56 @@ const Home = () => {
 
     </>
     )
+  }else{
+    return (
+      <>
+      <Header/>
+          <NavbarProfile/>
+          <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
+              <div className='leftMid'>
+                  <div className='leftTop'>
+                      <div className='search'>
+                         
+                        <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
+                        <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/>
+                        <input type="search" className="searchArtist" placeholder="Search an artist..." onChange={(e)=>setQuery(e.target.value)} />
+                          <button type='submit' onClick={search}>   
+                              Search
+                          </button>
+                      </div>
+                     
+                  </div>
+                  <div className='leftBot'>
+                    <div className='weeklySugest'>
+                        <div className='sugestLeft'>
+                          <div className='bandImg'>
+                            <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`}></img>
+                          </div>
+                        </div>
+                        <div classname='sugestRight'>
+                          <div className='sugestRightTop'>
+                            <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div>
+                          </div>
+                          <div className='sugestRightBot'>
+                            <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div>
+                          </div>   
+                        </div>          
+                    </div>
+                  </div>
+                  
+              </div>
+              <div className='rightMid'>
+                  <div className='topBands'>
+                    <div className='band'>
+                    </div>
+  
+                  </div>
+              </div>
+          </div>
+  
+      </>
+      )
+  }
 }
 
 export default Home;

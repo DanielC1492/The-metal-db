@@ -27,7 +27,7 @@ const Login = (props) =>{
     const stateHandler = (event) => {
         setUser({...user, [event.target.name]: event.target.type === "number" ? +event.target.value : event.target.value});
     }
-
+    console.log(props)
     const handleOnKeyDown = ( event ) => {
         if(event.keyCode === 13) sendData()
     }
@@ -38,12 +38,12 @@ const Login = (props) =>{
             const res = await axios.post('http://localhost:8000/api/login', user)
                 console.log(res)
                 localStorage.setItem("token", JSON.stringify(res))
-                localStorage.setItem("client", JSON.stringify(res.data.client))
+                localStorage.setItem("user", JSON.stringify(res.data.user))
                 props.dispatch({type: LOGIN, payload: res.data})    
-            
+                console.log(res)
 
                 
-                props.dispatch({type: LOGIN, payload: res.data})
+                // props.dispatch({type: LOGIN, payload: res.data})
                 
                 return setTimeout(() => {
                     history.push('/')
@@ -62,6 +62,7 @@ const Login = (props) =>{
         }catch(error){
             setMessage('Email or password not found');
         }
+        
     };
     
     const redirect = () => {

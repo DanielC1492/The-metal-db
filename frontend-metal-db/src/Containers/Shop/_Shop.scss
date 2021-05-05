@@ -23,7 +23,6 @@
  
 }
 
-
 .mugDiv{
     height: $formHeigh;
     width: $formWidth;
@@ -37,3 +36,54 @@
     background-color: $color3;
     border-radius: $radius;
 }
+
+.productDiv{
+    height: $formHeigh;
+    width: $formWidth;
+    background-color: $color3;
+    border-radius: $radius;
+    display: flex;
+    flex-direction: column;
+}
+
+.productTop{
+    height: $halfFormHeigh;
+    width: $formWidth;
+    display: flex;
+    flex-direction: row;
+}
+
+.productTopLeft{
+    width: $halfFormWidth;
+    
+}
+
+
+.productTopRight{
+    width: $halfFormWidth;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-top: 2em;
+    color: $color4;
+    font-size: xx-large;
+}
+
+.productImg{
+    height: 15rem;
+    width: 15rem;
+    background-color: $color3;
+    border-radius: $radius;
+}
+
+.namePrice{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: $formWidth;
+
+}
+
+

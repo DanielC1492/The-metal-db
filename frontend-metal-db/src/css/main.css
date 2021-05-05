@@ -302,3 +302,43 @@ li a {
   width: 40em;
   background-color: #3c415cb8;
   border-radius: 2em; }
+
+.productDiv {
+  height: 37em;
+  width: 40em;
+  background-color: #3c415cb8;
+  border-radius: 2em;
+  display: flex;
+  flex-direction: column; }
+
+.productTop {
+  height: 18.5em;
+  width: 40em;
+  display: flex;
+  flex-direction: row; }
+
+.productTopLeft {
+  width: 20em; }
+
+.productTopRight {
+  width: 20em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-top: 2em;
+  color: #b4a5a5;
+  font-size: xx-large; }
+
+.productImg {
+  height: 15rem;
+  width: 15rem;
+  background-color: #3c415cb8;
+  border-radius: 2em; }
+
+.namePrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 40em; }
