@@ -320,15 +320,41 @@ li a {
 .productTopLeft {
   width: 20em; }
 
+.productRight {
+  display: flex;
+  flex-direction: column;
+  height: 18.5em; }
+
 .productTopRight {
   width: 20em;
+  height: 9.25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #b4a5a5;
+  font-size: xx-large; }
+
+.productUpper {
+  width: 10em;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: flex-start;
-  margin-top: 2em;
-  color: #b4a5a5;
-  font-size: xx-large; }
+  align-items: flex-start; }
+
+.addToCartButton {
+  height: 5em;
+  width: 9em;
+  border-radius: 2em;
+  color: #3c415cb8;
+  box-shadow: 0 0.23em #767676; }
+  .addToCartButton:active {
+    background-color: #ece6e6;
+    box-shadow: 0 0.1em #767676;
+    transform: translateY(4px); }
+
+.productBotRight {
+  height: 9.25em; }
 
 .productImg {
   height: 15rem;
@@ -354,3 +380,21 @@ li a {
 .productInfo {
   font-size: large;
   color: #b4a5a5; }
+
+.elementoCarrito {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2em; }
+
+.imagenCarrito {
+  width: 2em;
+  height: 2em; }
+
+.cantidadCarrito {
+  font-weight: bold;
+  color: orange;
+  font-size: 0.7em;
+  margin-left: -0.5em;
+  margin-top: 0.4em; }

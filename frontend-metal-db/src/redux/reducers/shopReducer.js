@@ -1,11 +1,11 @@
-import {ADD, REMOVE, CLEAN, EDIT, TOTAL_CART} from '../types/cartType.js';
+import {ADD, REMOVE, CLEAN, EDIT, TOTAL_CART} from '../types/shopTypes';
 
 const initialState = {
     cart : [],
     totalCart : 0
 };
 
-const cartReducer = (state = initialState, action) => {
+const shopReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD :
             return {
@@ -55,4 +55,4 @@ const cartReducer = (state = initialState, action) => {
     }
 }
 
-export default cartReducer;
+export default shopReducer;

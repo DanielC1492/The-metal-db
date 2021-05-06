@@ -191,7 +191,7 @@ const Home = (props) => {
                     <div className='weeklySugest'>
                         <div className='sugestLeft'>
                           <div className='bandImg'>
-                            <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`}></img>
+                            <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`} alt='artist'></img>
                           </div>
                         </div>
                         <div classname='sugestRight'>
