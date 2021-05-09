@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // }]);
 
 //Product Methods
+
+
+//Artist Methods
+
+Route::post('/create', [ArtistController::class, 'createArtist']);
+Route::get('/artists', [ArtistController::class, 'getAllArtists']);
+Route::get('/artist/{id}',[ArtistController::class, 'getArtistById']);
+Route::get('/artist/{name}',[ArtistController::class, 'getArtistByName']);
+Route::get('/artist/{genre}', [ArtistController::class, 'getArtistByGenre']);
+Route::post('/artist/{country}', [ArtistController::class, 'getArtistByCountry']);
+Route::put('/artist',[ArtistController::class, 'updateArtist']);
+Route::delete('/artist',[ArtistController::class, 'deleteArtist']); 
