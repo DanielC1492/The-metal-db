@@ -381,18 +381,18 @@ li a {
   font-size: large;
   color: #b4a5a5; }
 
-.elementoCarrito {
+.cartContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-right: 2em; }
 
-.imagenCarrito {
+.cartImg {
   width: 2em;
   height: 2em; }
 
-.cantidadCarrito {
+.cartQuantity {
   font-weight: bold;
   color: orange;
   font-size: 0.7em;
