@@ -1,0 +1,95 @@
+    <Header/>
+        <Navbar/>
+        <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
+            <div className='leftMid'>
+                <div className='leftTop'>
+                    <div className='search'>
+                       
+                      <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
+                      {/* <Dropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged} /> */}
+                      {/* <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/> */}
+                      <input type="search" className="searchArtist" placeholder="Search an artist..." onChange={(e)=>setQuery(e.target.value)} />
+                        <button type='submit' onClick={search}>   
+                            Search
+                        </button>
+                    </div>
+                   
+                </div>
+                <div className='leftBot'>
+                  <div className='weeklySugest'>
+                      <div className='sugestLeft'>
+                        <div className='bandImg'>
+                          {/* <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`}></img> */}
+                        </div>
+                      </div>
+                      <div classname='sugestRight'>
+                        <div className='sugestRightTop'>
+                          {/* <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div> */}
+                        </div>
+                        <div className='sugestRightBot'>
+                          {/* <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div> */}
+                        </div>   
+                      </div>          
+                  </div>
+                </div>
+                
+            </div>
+            <div className='rightMid'>
+                <div className='topBands'>
+                  <div className='band'>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+    </>
+    )
+  }else{
+    return (
+      <>
+      <Header/>
+          <NavbarProfile/>
+          <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
+              <div className='leftMid'>
+                  <div className='leftTop'>
+                      <div className='search'>
+                         
+                        <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
+                        <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
+                        <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/>
+                        <input type="search" className="searchArtist" placeholder="Search an artist..." onChange={(e)=>setQuery(e.target.value)} />
+                          <button type='submit' onClick={search}>   
+                              Search
+                          </button>
+                      </div>
+                     
+                  </div>
+                  <div className='leftBot'>
+                    <div className='weeklySugest'>
+                        <div className='sugestLeft'>
+                          <div className='bandImg'>
+                            <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`} alt='artist'></img>
+                          </div>
+                        </div>
+                        <div classname='sugestRight'>
+                          <div className='sugestRightTop'>
+                            <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div>
+                          </div>
+                          <div className='sugestRightBot'>
+                            <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div>
+                          </div>   
+                        </div>          
+                    </div>
+                  </div>
+                  
+              </div>
+              <div className='rightMid'>
+                  <div className='topBands'>
+                    <div className='band'>
+                    </div>
+  
+                  </div>
+              </div>
+          </div>
+  

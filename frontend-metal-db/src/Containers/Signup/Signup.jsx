@@ -76,9 +76,7 @@ const Signup = (props) => {
         <Navbar/>
         <div className="signupContainer" style={{ backgroundImage: `url(${background})`}}>
             <div className='black'>
-
-                {/* <pre>{JSON.stringify(user, null,2)}</pre> */}
-
+                
                 <div className="formWindow">
                     <p>Nickame:</p>
                     <input
@@ -147,8 +145,10 @@ const Signup = (props) => {
                 </div>
 
                 <div className='errorMessage'>{message}</div>
+                
             </div>
         </div>
+               
         </>
     )
 };

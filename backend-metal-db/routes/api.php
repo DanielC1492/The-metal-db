@@ -35,8 +35,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/create', [ArtistController::class, 'createArtist']);
 Route::get('/artists', [ArtistController::class, 'getAllArtists']);
 Route::get('/artist/{id}',[ArtistController::class, 'getArtistById']);
-Route::get('/artist/{name}',[ArtistController::class, 'getArtistByName']);
-Route::get('/artist/{genre}', [ArtistController::class, 'getArtistByGenre']);
-Route::post('/artist/{country}', [ArtistController::class, 'getArtistByCountry']);
+Route::get('/artistName/{name}',[ArtistController::class, 'getArtistByName']);
+Route::get('/artistGenre/{genre}', [ArtistController::class, 'getArtistByGenre']);
+Route::get('/artistCountry/{country}', [ArtistController::class, 'getArtistByCountry']);
 Route::put('/artist',[ArtistController::class, 'updateArtist']);
 Route::delete('/artist',[ArtistController::class, 'deleteArtist']); 

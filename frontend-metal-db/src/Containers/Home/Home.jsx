@@ -6,119 +6,81 @@ import Header from '../../Components/Header/Header';
 import background from '../../img/background.jpg';
 import SpotifyService from '../../Services/Spotify.service';
 import TracksDropdown from '../../Components/TracksDropdown/TracksDropdown';
-// import  Credentials  from '../../Credentials';
-// import Countries from '../../Components/CountrySelector/CountrySelector';
+import axios from 'axios';
+import { Input, Space } from 'antd';
 
 const Home = (props) => {
 
+
+  const { Search } = Input;
+
+  const onSearch = value => console.log(value);
+
   let history = useHistory();
+ 
+    const [search, setSearch] = useState({ searchBox: '' });
+    // const [artist, setArtist] = useState({selectedArtist: '', listOfArtistsFromAPI: []});
+    const [artists, setArtists] = useState({artistSelect: '', selectedArtist: []});
 
-  const Credentials = () => {
+    const stateHandler = (event) => {
+        setSearch({...search, 
+            [event.target.name]: event.target.type === 'number' ? +event.target.value : event.target.value});
 
-    return { 
-        ClientId: '71db2d6bf70e49f183678f5191ff85d0',
-        ClientSecret: 'f5cb237a05c745b489dfa6119409fc75'
-    }
-  }
-
-
-    const spotify = Credentials();
-    const [spotify_service, setSpotifyService] = useState(new SpotifyService(''));
-    const [query,setQuery] = useState('');
-    const [genres, setGenres] = useState({selectedGenre: '', listOfGenresFromAPI: []});
-    const [artists, setArtists] = useState({selectedArtist: '', listOfArtistsFromAPI: []});
-    const [artist, setArtist] = useState({artistSelect: '', selectedArtist: []});
-
-    const search = () => {
-      if (query !== '') history.push(`${query}`);
-  }
+    };
 
 
-    // const data = [
-    //     {value: 1, name : 'A'},
-    //     {value: 2, name : 'B'},
-    //     {value: 3, name : 'C'},
-    //     {value: 4, name : 'D'},
-    //     {value: 5, name : 'E'},
-    //     {value: 6, name : 'F'},
-    //     {value: 7, name : 'G'}
-    // ]
-
-    
-
-    useEffect( async () => {
-      
-      console.log('REFRESHING STATE');
-      const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
-      setSpotifyService(spotify_instance);
-      const genres = await spotify_instance.getGenres(); 
-      setGenres({
-        selectedGenre : '',
-        listOfGenresFromAPI: genres
-      });
-      const weeklyArtist = async () => {
-       
-        const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
-        const artist = await spotify_instance.getAnArtist();
-        setArtist({
-          artistSelect : 'artist',
-          selectedArtist: artist
-        })
+  const searchingEngine = async () => {
         
-        
-      }
-      getBands();
-      weeklyArtist();
-
-      // console.log(genres);
-  
-    },[spotify.ClientId, spotify.ClientSecret]);
+    const result = await axios.get(`http://localhost:8000/api/artist/Ayreon`);
+    // const arraySearch = result.data.data.results.filter(explore => 
+    //     explore.title.toLowerCase().includes(search.searchBox.toLowerCase())
+    // )
+    // console.log("buscador", arraySearch);
+    // props.dispatch({type: SEARCH, payload: arraySearch})
     
-    const typeArtist = async () => {
-      const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
-      const inputArtist = await spotify_instance.searchArtist(inputArtist);
-      console.log(inputArtist)
-      setArtists({
-      selectedArtist : '',
-      listOfArtistsFromAPI: artists,
-      
-    })
-    }
 
-  
-    const getBands = async () => {
-      
-      const spotify_instance = await SpotifyService.init(spotify.ClientId, spotify.ClientSecret);
-      const artists = await spotify_instance.getArtists(genres.selectedGenre);
-      console.log(genres.selectedGenre)
-      console.log(artists);
-      setArtists({
-      selectedArtist : '',
-      listOfArtistsFromAPI: artists,
-      
-    })
-    }
-
-
+    // setSearch({
+    //     ...search, searchBox: arraySearch
+    // });
+  }
     
-    const genreChanged = genreVal => {
-      console.log(genreVal)
-      setGenres({
-        selectedGenre: genreVal,
-        listOfGenresFromAPI: genres.listOfGenresFromAPI
-      });
-      return genreVal;
-    }
+  
+  useEffect( async () => {
 
-    const artistChanged = artistVal => {
-      console.log(artistVal)
+      getArtists();
+
+    },[]);
+    
+    const getArtists = async () => {
+      const artists = await axios.get('http://localhost:8000/api/artists')
+      console.log(artists)
+      // localStorage.setItem("token", JSON.stringify(res))
+      // localStorage.setItem("user", JSON.stringify(res.data.user))
+      // props.dispatch({type: LOGIN, payload: res.data})  
+      
+     
       setArtists({
-        selectedArtist: artistVal,
-        listOfArtistsFromAPI: artists.listOfArtistsFromAPI,
+        artistSelect : 'artists',
+        selectedArtist: artists
       })
-    }
+
+      return artists;
+  }
+
+  console.log(artists)
+
+    // const artistsChanged = artistsVal => {
+    //   console.log(artistsVal)
+    //   setArtists({
+    //     selectedArtist: artistsVal,
+    //     listOfArtistsFromAPI: artists.listOfArtistsFromAPI,
+    //   })
+    // }
     
-    if(!props.user?.token){
+    const handleOnKeyDown = (event) => {
+      if(event.keyCode === 13) searchingEngine()
+    };
+   
     return (
     <>
     <Header/>
@@ -128,39 +90,111 @@ const Home = (props) => {
                 <div className='leftTop'>
                     <div className='search'>
                        
-                      <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
+                      {/* <Dropdown label="Bands :" options={artists.listOfGenresFromAPI} selectedValue={artists.data} changed={artistsChanged} /> */}
                       {/* <Dropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged} /> */}
                       {/* <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/> */}
-                      <input type="search" className="searchArtist" placeholder="Search an artist..." onChange={(e)=>setQuery(e.target.value)} />
-                        <button type='submit' onClick={search}>   
-                            Search
-                        </button>
+                      <Search className='input' placeholder="Search a band" allowClear onSearch={searchingEngine} style={{ width: 200 }} />
+                      <Search className='input' placeholder="Search a genre" allowClear onSearch={onSearch} style={{ width: 200 }} />
+                      <Search className='input' placeholder="Search a country" allowClear onSearch={onSearch} style={{ width: 200 }} />
                     </div>
                    
                 </div>
                 <div className='leftBot'>
                   <div className='weeklySugest'>
-                      <div className='sugestLeft'>
+                    <div className='sugestText'>Weekly Sugest</div>
+                      {/* <div className='sugestLeft'>
                         <div className='bandImg'>
-                          {/* <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`}></img> */}
+                          <img className='bandImg' src={`${artists.selectedArtist.data[8].image}`}></img>
                         </div>
                       </div>
-                      <div classname='sugestRight'>
+                      <div className='sugestRight'>
                         <div className='sugestRightTop'>
-                          {/* <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div> */}
+                          <div className='bandName'> {`${artists.selectedArtist.data[8].name}`}</div>
                         </div>
                         <div className='sugestRightBot'>
-                          {/* <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div> */}
+                          <div className='bandGenres'>{`${artists.selectedArtist.data[8].genre}`}</div>
+                        </div>  
+                        <div className='sugestRightBot'>
+                          <div className='bandGenres'>{`${artists.selectedArtist.data[8].country}`}</div>
                         </div>   
-                      </div>          
+                      </div>           */}
                   </div>
                 </div>
                 
             </div>
             <div className='rightMid'>
+              
                 <div className='topBands'>
-                  <div className='band'>
-                  </div>
+                  <div className='textTopBands'>TOP 5 BANDS</div>
+                    {/* <div className='band'>
+                      <div className='topBandsLeft'>
+                        <div className='topBandImg'>
+                          <img className='topBandImg' src={`${artists.selectedArtist.data[0].image}`}></img>
+                        </div>
+                      </div>
+                      <div className='topBandsRight'>
+                        <div className='topBandName'> {`${artists.selectedArtist.data[0].name}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[0].genre}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[0].country}`}</div>
+                      </div>
+                      
+                      
+                    </div>
+
+                    <div className='band'>
+                      <div className='topBandsLeft'>
+                        <div className='topBandImg'>
+                          <img className='topBandImg' src={`${artists.selectedArtist.data[1].image}`}></img>
+                        </div>
+                      </div>
+                      <div className='topBandsRight'>
+                        <div className='topBandName'> {`${artists.selectedArtist.data[1].name}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[1].genre}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[1].country}`}</div>
+                      </div>
+                    </div>
+
+                    <div className='band'>
+                      <div className='topBandsLeft'>
+                        <div className='topBandImg'>
+                          <img className='topBandImg' src={`${artists.selectedArtist.data[3].image}`}></img>
+                        </div>
+                      </div>
+
+                      <div className='topBandsRight'>
+                        <div className='topBandName'> {`${artists.selectedArtist.data[3].name}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[3].genre}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[3].country}`}</div>
+                      </div> 
+                    </div>
+
+                    <div className='band'>
+                      <div className='topBandsLeft'>
+                        <div className='topBandImg'>
+                          <img className='topBandImg' src={`${artists.selectedArtist.data[6].image}`}></img>
+                        </div>
+                      </div>
+                      <div className='topBandsRight'>
+                        <div className='topBandName'> {`${artists.selectedArtist.data[6].name}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[6].genre}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[6].country}`}</div>
+                      </div>
+                    </div>
+
+                    <div className='band'>
+                      <div className='topBandsLeft'>
+                        <div className='topBandImg'>
+                          <img className='topBandImg' src={`${artists.selectedArtist.data[9].image}`}></img>
+                        </div>
+                      </div>
+                      <div className='topBandsRight'>
+                        <div className='topBandName'> {`${artists.selectedArtist.data[9].name}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[9].genre}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[9].country}`}</div>
+                      </div>
+                      
+                      
+                    </div> */}
 
                 </div>
             </div>
@@ -168,56 +202,7 @@ const Home = (props) => {
 
     </>
     )
-  }else{
-    return (
-      <>
-      <Header/>
-          <NavbarProfile/>
-          <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
-              <div className='leftMid'>
-                  <div className='leftTop'>
-                      <div className='search'>
-                         
-                        <Dropdown label="Genre :" options={genres.listOfGenresFromAPI} selectedValue={genres.selectedGenre} changed={genreChanged} />
-                        <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/>
-                        <input type="search" className="searchArtist" placeholder="Search an artist..." onChange={(e)=>setQuery(e.target.value)} />
-                          <button type='submit' onClick={search}>   
-                              Search
-                          </button>
-                      </div>
-                     
-                  </div>
-                  <div className='leftBot'>
-                    <div className='weeklySugest'>
-                        <div className='sugestLeft'>
-                          <div className='bandImg'>
-                            <img className='bandImg' src={`${artist.selectedArtist.data.images[0].url}`} alt='artist'></img>
-                          </div>
-                        </div>
-                        <div classname='sugestRight'>
-                          <div className='sugestRightTop'>
-                            <div className='bandName'> {`${artist.selectedArtist.data.name}`}</div>
-                          </div>
-                          <div className='sugestRightBot'>
-                            <div className='bandGenres'>{`${artist.selectedArtist.data.genres}`}</div>
-                          </div>   
-                        </div>          
-                    </div>
-                  </div>
-                  
-              </div>
-              <div className='rightMid'>
-                  <div className='topBands'>
-                    <div className='band'>
-                    </div>
-  
-                  </div>
-              </div>
-          </div>
-  
-      </>
-      )
-  }
 }
+
 
 export default Home;

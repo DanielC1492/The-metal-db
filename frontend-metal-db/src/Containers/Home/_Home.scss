@@ -31,7 +31,7 @@
     height: $formHeigh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border-radius: $radius;    
     box-shadow: $shadow;
@@ -53,11 +53,11 @@
     height: 20rem;
     width: 20rem;
     background-color: $color3;
-    &:hover{
-        height: 22rem;
-        width: 22rem;
-        transition: $inOut;
-    } 
+    // &:hover{
+    //     height: 22rem;
+    //     width: 22rem;
+    //     transition: $inOut;
+    // } 
     border-radius: $radius;  
 }
 
@@ -83,6 +83,10 @@
     justify-content: space-evenly;   
 }
 
+.sugestText{
+    font-size: xx-large;
+}
+
 .sugestRight{
     display: flex;
     flex-direction: column;
@@ -103,6 +107,7 @@
 
 .rightMid{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: $black;
@@ -111,16 +116,54 @@
 }
 
 
+
+
 .topBands{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 50rem;
-    width: 50rem;
+    width: 45rem;
     background-color: $color3;
     transition: $inOut;
     border-radius: $radius;
-    &:hover{
-        height: 52rem;
-        width: 52rem;
-        transition: $inOut;
-    }
+    // &:hover{
+    //     height: 52rem;
+    //     width: 52rem;
+    //     transition: $inOut;
+    // }
 
+}
+
+.textTopBands{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: xx-large;
+}
+
+.band{
+    height: 7em;
+    width:50rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 25em;
+}
+
+.topBandImg{
+    height: 5rem;
+    width: 5rem;
+    
+    border-radius: $radius;
+   
+}
+
+.topBandsRight{
+
+    margin-left: 4em;
+}
+
+.topBandName{
+    font-size: xx-large;
 }

@@ -49,8 +49,9 @@ class ArtistController extends Controller
     public function getArtistByName($name) {
         try {
 
-            return Artist::all()->where('id', '=', $name)
-            ->keyBy('id');
+            return Artist::all()
+            ->where('name', '=', $name);
+           
        
         } catch (QueryException $error){
             return $error;
@@ -60,9 +61,8 @@ class ArtistController extends Controller
     public function getArtistByGenre($genre) {
         try{
 
-            return Artist::all()->where('id', '=', $genre)
-            ->keyBy('id');
-
+            return Artist::all()->where('genre', '=', $genre);
+       
         }catch (QueryException $error){
             return $error;
         }       
@@ -71,8 +71,8 @@ class ArtistController extends Controller
     public function getArtistByCountry($country) {
         try{
 
-            return Artist::all()->where('id', '=', $country)
-            ->keyBy('id');
+            return Artist::all()->where('country', '=', $country);
+            
 
         }catch (QueryException $error){
             return $error;
@@ -114,3 +114,5 @@ class ArtistController extends Controller
        }
 
 }
+
+
