@@ -5,9 +5,8 @@ import { connect, } from 'react-redux';
 import { LOGIN } from "../../redux/types/userTypes";
 import { ADMINLOGIN } from "../../redux/types/adminTypes";
 import { Navbar } from '../../Components/Navbar/Navbar';
-import background from '../../img/background.jpg';
-// import Boton from '../../components/Boton/Boton';
-// import checkError from '../../tools/error.handlers';
+import background from '../../img/background-concert.jpg';
+import checkError from '../../tools/error.handlers';
 
 const Login = (props) =>{
 
@@ -41,9 +40,7 @@ const Login = (props) =>{
                 localStorage.setItem("user", JSON.stringify(res.data.user))
                 props.dispatch({type: LOGIN, payload: res.data})    
                 console.log(res)
-
-                
-                // props.dispatch({type: LOGIN, payload: res.data})
+                props.dispatch({type: LOGIN, payload: res.data})
                 
                 return setTimeout(() => {
                     history.push('/')
@@ -106,7 +103,7 @@ const Login = (props) =>{
                     <p className='showPWText'>Show Password</p>
                     </div> 
                     <select className="select" name="userType" defaultValue={'DEFAULT'} onChange={stateHandler}>
-                        <option value="Client">Client</option>
+                        <option value="User">User</option>
                         <option value="Admin">Admin</option>
                     </select>
                     <button className='loginBtn' onClick={()=> sendData()}>Login</button>

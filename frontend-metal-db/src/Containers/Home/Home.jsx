@@ -1,47 +1,86 @@
 import React, { useState, useEffect } from 'react';
+import { SHOWCOUNT, SEARCH, SHOWBAND, LOGOUTBAND} from '../../redux/types/bandsTypes.js'
 import {useHistory} from 'react-router-dom';
-import { Navbar, NavbarProfile } from '../../Components/Navbar/Navbar';
-import Dropdown from '../../Components/Dropdown/Dropdown';
+import { Navbar } from '../../Components/Navbar/Navbar';
 import Header from '../../Components/Header/Header';
-import background from '../../img/background.jpg';
-import SpotifyService from '../../Services/Spotify.service';
-import TracksDropdown from '../../Components/TracksDropdown/TracksDropdown';
+import background from '../../img/background-concert.jpg';
+// import SpotifyService from '../../Services/Spotify.service';
 import axios from 'axios';
-import { Input, Space } from 'antd';
+import { connect } from 'react-redux';
 
 const Home = (props) => {
 
+  const history = useHistory();
 
-  const { Search } = Input;
+  const [search, setSearch] = useState({
+    searchBox: ''
+  });
 
-  const onSearch = value => console.log(value);
+  const stateHandler = (event) => {
+    setSearch({...search, 
+        [event.target.name]: event.target.type === 'number' ? +event.target.value : event.target.value});
+};
 
-  let history = useHistory();
- 
-    const [search, setSearch] = useState({ searchBox: '' });
-    // const [artist, setArtist] = useState({selectedArtist: '', listOfArtistsFromAPI: []});
+  
     const [artists, setArtists] = useState({artistSelect: '', selectedArtist: []});
-
-    const stateHandler = (event) => {
-        setSearch({...search, 
-            [event.target.name]: event.target.type === 'number' ? +event.target.value : event.target.value});
-
-    };
-
-
-  const searchingEngine = async () => {
-        
-    const result = await axios.get(`http://localhost:8000/api/artist/Ayreon`);
-    // const arraySearch = result.data.data.results.filter(explore => 
-    //     explore.title.toLowerCase().includes(search.searchBox.toLowerCase())
-    // )
-    // console.log("buscador", arraySearch);
-    // props.dispatch({type: SEARCH, payload: arraySearch})
     
 
-    // setSearch({
-    //     ...search, searchBox: arraySearch
-    // });
+    const searchingByName = async () => {
+        
+      const res = await axios.get(`http://localhost:8000/api/artistName/${search.searchBox}`);
+      console.log(res + 'ESTE ES EL LOG DEL RESULT');
+      const arraySearch = res.data.filter(explore => 
+        explore.name.toLowerCase().includes(search.searchBox.toLowerCase())
+    )
+      props.dispatch({type: SEARCH, payload: arraySearch})
+    
+      console.log(arraySearch);
+      setSearch({
+          ...search, searchBox: arraySearch
+      });
+
+      return setTimeout(() => {
+        history.push('/band')
+    }, 1000);
+  }
+
+  const searchingByGenre = async () => {
+        
+    const res = await axios.get(`http://localhost:8000/api/artistGenre/${search.searchBox}`);
+    console.log(res + 'ESTE ES EL LOG DEL RESULT');
+    const arraySearch = res.data.filter(explore => 
+        explore.genre.toLowerCase().includes(search.searchBox.toLowerCase())
+    )
+    console.log("buscador", arraySearch);
+    setSearch({
+      ...search, searchBox: arraySearch
+  });
+
+      return setTimeout(() => {
+        history.push('/band')
+    }, 1000);
+    props.dispatch({type: SEARCH, payload: arraySearch})
+  }
+
+  const searchingByCountry = async () => {
+        
+    const res = await axios.get(`http://localhost:8000/api/artistCountry/${search.searchBox}`);
+    console.log(res + 'ESTE ES EL LOG DEL RESULT');
+    localStorage.setItem("band", JSON.stringify(res.data))
+    const arraySearch = res.data.filter(explore => 
+        explore.country.toLowerCase().includes(search.searchBox.toLowerCase())
+    )
+    console.log("buscador", arraySearch);
+    setSearch({
+      ...search, searchBox: arraySearch
+  });
+
+      return setTimeout(() => {
+      history.push('/band')
+      }, 1000);
+    props.dispatch({type: SEARCH, payload: arraySearch})
+
+
   }
     
   
@@ -53,7 +92,7 @@ const Home = (props) => {
     
     const getArtists = async () => {
       const artists = await axios.get('http://localhost:8000/api/artists')
-      console.log(artists)
+      
       // localStorage.setItem("token", JSON.stringify(res))
       // localStorage.setItem("user", JSON.stringify(res.data.user))
       // props.dispatch({type: LOGIN, payload: res.data})  
@@ -67,18 +106,10 @@ const Home = (props) => {
       return artists;
   }
 
-  console.log(artists)
-
-    // const artistsChanged = artistsVal => {
-    //   console.log(artistsVal)
-    //   setArtists({
-    //     selectedArtist: artistsVal,
-    //     listOfArtistsFromAPI: artists.listOfArtistsFromAPI,
-    //   })
-    // }
+  // console.log(artists)
     
     const handleOnKeyDown = (event) => {
-      if(event.keyCode === 13) searchingEngine()
+      if(event.keyCode === 13) searchingByName()
     };
    
     return (
@@ -89,20 +120,22 @@ const Home = (props) => {
             <div className='leftMid'>
                 <div className='leftTop'>
                     <div className='search'>
-                       
-                      {/* <Dropdown label="Bands :" options={artists.listOfGenresFromAPI} selectedValue={artists.data} changed={artistsChanged} /> */}
-                      {/* <Dropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged} /> */}
-                      {/* <TracksDropdown label="Tracks :" options={artists.listOfArtistsFromAPI} selectedValue={artists.selectedArtist} changed={artistChanged}/> */}
-                      <Search className='input' placeholder="Search a band" allowClear onSearch={searchingEngine} style={{ width: 200 }} />
-                      <Search className='input' placeholder="Search a genre" allowClear onSearch={onSearch} style={{ width: 200 }} />
-                      <Search className='input' placeholder="Search a country" allowClear onSearch={onSearch} style={{ width: 200 }} />
+                      <input className="searchBox" type="search" name="searchBox" placeholder="Search by name..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
+                      <button type="submit" className="" onClick={()=> searchingByName()} >Buscar</button>
+                      <input className="searchBox" type="search" name="searchBox" placeholder="Search by genre..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
+                      <button type="submit" className="" onClick={()=> searchingByGenre()} >Buscar</button>
+                      <input className="searchBox" type="search" name="searchBox" placeholder="Search by country..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
+                      <button type="submit" className="" onClick={()=> searchingByCountry()} >Buscar</button>
+                      {/* <Search className='input' placeholder="Search a band" allowClear onSearch={() => searchingByName()} style={{ width: 200 }} />
+                      <Search className='input' placeholder="Search a genre" allowClear onSearch={() => searchingByGenre()} style={{ width: 200 }} />
+                      <Search className='input' placeholder="Search a country" allowClear onSearch={() => searchingByCountry()} style={{ width: 200 }} /> */}
                     </div>
                    
                 </div>
                 <div className='leftBot'>
                   <div className='weeklySugest'>
                     <div className='sugestText'>Weekly Sugest</div>
-                      {/* <div className='sugestLeft'>
+                      <div className='sugestLeft'>
                         <div className='bandImg'>
                           <img className='bandImg' src={`${artists.selectedArtist.data[8].image}`}></img>
                         </div>
@@ -117,7 +150,7 @@ const Home = (props) => {
                         <div className='sugestRightBot'>
                           <div className='bandGenres'>{`${artists.selectedArtist.data[8].country}`}</div>
                         </div>   
-                      </div>           */}
+                      </div>          
                   </div>
                 </div>
                 
@@ -126,7 +159,7 @@ const Home = (props) => {
               
                 <div className='topBands'>
                   <div className='textTopBands'>TOP 5 BANDS</div>
-                    {/* <div className='band'>
+                    <div className='band'>
                       <div className='topBandsLeft'>
                         <div className='topBandImg'>
                           <img className='topBandImg' src={`${artists.selectedArtist.data[0].image}`}></img>
@@ -157,27 +190,27 @@ const Home = (props) => {
                     <div className='band'>
                       <div className='topBandsLeft'>
                         <div className='topBandImg'>
-                          <img className='topBandImg' src={`${artists.selectedArtist.data[3].image}`}></img>
+                          <img className='topBandImg' src={`${artists.selectedArtist.data[4].image}`}></img>
                         </div>
                       </div>
 
                       <div className='topBandsRight'>
-                        <div className='topBandName'> {`${artists.selectedArtist.data[3].name}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[3].genre}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[3].country}`}</div>
+                        <div className='topBandName'> {`${artists.selectedArtist.data[4].name}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[4].genre}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[4].country}`}</div>
                       </div> 
                     </div>
 
                     <div className='band'>
                       <div className='topBandsLeft'>
                         <div className='topBandImg'>
-                          <img className='topBandImg' src={`${artists.selectedArtist.data[6].image}`}></img>
+                          <img className='topBandImg' src={`${artists.selectedArtist.data[7].image}`}></img>
                         </div>
                       </div>
                       <div className='topBandsRight'>
-                        <div className='topBandName'> {`${artists.selectedArtist.data[6].name}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[6].genre}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[6].country}`}</div>
+                        <div className='topBandName'> {`${artists.selectedArtist.data[7].name}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[7].genre}`}</div>
+                        <div className='topBandGenres'>{`${artists.selectedArtist.data[7].country}`}</div>
                       </div>
                     </div>
 
@@ -194,7 +227,7 @@ const Home = (props) => {
                       </div>
                       
                       
-                    </div> */}
+                    </div>
 
                 </div>
             </div>
@@ -203,6 +236,12 @@ const Home = (props) => {
     </>
     )
 }
+// const mapStateToProps = state => {
+//   return {
+//       band : state.bandReducer.band,
+//       count : state.userReducer.query
+//   }
+// }
 
 
-export default Home;
+export default connect(/*mapStateToProps*/) (Home);

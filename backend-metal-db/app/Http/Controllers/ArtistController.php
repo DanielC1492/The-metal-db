@@ -14,12 +14,12 @@ class ArtistController extends Controller
         $country = $request-> input('country');
 
      try{
-         return [ 'Success'=>'Artist Added!!',Artist::create([
+         return Artist::create([
              'name' => $name,
              'image' => $image,
              'genre' => $genre,
              'country'=>$country
-         ])];
+         ]);
          } catch (QueryException $error){
          return $error;
         }
@@ -49,8 +49,9 @@ class ArtistController extends Controller
     public function getArtistByName($name) {
         try {
 
-            return Artist::all()
-            ->where('name', '=', $name);
+            return Artist::query()
+            ->where('name', '=', $name)
+            ->get();
            
        
         } catch (QueryException $error){
@@ -61,7 +62,9 @@ class ArtistController extends Controller
     public function getArtistByGenre($genre) {
         try{
 
-            return Artist::all()->where('genre', '=', $genre);
+            return Artist::query()
+            ->where('genre', '=', $genre)
+            ->get();
        
         }catch (QueryException $error){
             return $error;
@@ -71,7 +74,9 @@ class ArtistController extends Controller
     public function getArtistByCountry($country) {
         try{
 
-            return Artist::all()->where('country', '=', $country);
+            return Artist::query()
+            ->where('country', '=', $country)
+            ->get();
             
 
         }catch (QueryException $error){
@@ -89,13 +94,12 @@ class ArtistController extends Controller
         $artistId = $request->input('id');
         try{
 
-        return [Artist:: where('id','=',$artistId)->update(
-            [
+            return Artist::where('id',  '=', $artistId)->update([
                 'name' => $name,
-                'image' =>$image,
-                'genre' =>$genre,
+                'image' => $image,
+                'genre' => $genre,
                 'country'=>$country
-            ]),'Success'=>"Artist updated successfully"];
+            ]);
        }catch(QueryException $error){
         return $error;
      }

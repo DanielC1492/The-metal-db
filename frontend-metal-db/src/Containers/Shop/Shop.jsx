@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux';
-import background from '../../img/background.jpg';
+import background from '../../img/background-concert.jpg';
 import { Navbar } from '../../Components/Navbar/Navbar';
 import tshirt from '../../img/tshirt-merch.jpg';
 import mug from '../../img/mug-merch.jpg';

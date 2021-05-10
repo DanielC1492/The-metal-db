@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import checkError from '../../tools/error.handlers';
 import { Navbar } from '../../Components/Navbar/Navbar';
-import background from '../../img/background.jpg';
+import background from '../../img/background-concert.jpg';
 
 
 const Signup = (props) => {
@@ -56,9 +56,9 @@ const Signup = (props) => {
         
         setMessage(errorMessage);
 
-        // if(errorMessage){
-        //     return;
-        // }
+        if(errorMessage){
+            return;
+        }
 
         const data = await axios.post('http://localhost:8000/api/register', user)
         console.log(data);
@@ -142,9 +142,11 @@ const Signup = (props) => {
                     <button 
                         className='loginBtn' 
                         onClick={()=> sendData()}>Send</button>
+
+                    <div className='errorMessage'>{message}</div>
                 </div>
 
-                <div className='errorMessage'>{message}</div>
+                
                 
             </div>
         </div>

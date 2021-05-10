@@ -1,0 +1,20 @@
+.bandContainer{
+    background-color: $color1;
+    height: $height;
+    width: $width;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.bandsList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50rem;
+    width: 45rem;
+    background-color: $color3;
+    transition: $inOut;
+    border-radius: $radius;
+}
