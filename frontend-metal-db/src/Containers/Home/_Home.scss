@@ -1,16 +1,25 @@
 
-
 .homeContainer{
     background-color: $color1;
     height: $height;
     width: $width;
     display: flex;
-    flex-direction: row;
     justify-content: center;
 
 }
 
+
 .leftMid{
+    background-color: $black;
+    height: 100vh;
+    width: 100vw;
+}
+
+.rightMid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: $black;
     height: 100vh;
     width: 100vw;
@@ -72,7 +81,7 @@
 
 .weeklySugest{
     height: 20rem;
-    width: 40rem;
+    width: 35rem;
     background-color: $color3;
     transition: $inOut;
 
@@ -105,19 +114,6 @@
     border-radius: $radius;
 }
 
-.rightMid{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: $black;
-    height: 100vh;
-    width: 100vw;
-}
-
-
-
-
 .topBands{
     display: flex;
     flex-direction: column;
@@ -142,13 +138,18 @@
 }
 
 .band{
-    height: 7em;
+    height: 6em;
     width:50rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-left: 25em;
+}
+
+.topBandsLeft{
+    display: flex;
+    align-items:baseline;
+    justify-content: space-evenly;
 }
 
 .topBandImg{
@@ -160,7 +161,9 @@
 }
 
 .topBandsRight{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-left: 4em;
 }
 

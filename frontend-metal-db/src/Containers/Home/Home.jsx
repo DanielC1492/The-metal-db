@@ -22,7 +22,7 @@ const Home = (props) => {
 };
 
   
-    const [artists, setArtists] = useState({artistSelect: '', selectedArtist: []});
+    const [artists, setArtists] = useState([{artistSelect: [], selectedArtist: []}]);
     
 
     const searchingByName = async () => {
@@ -92,147 +92,92 @@ const Home = (props) => {
     
     const getArtists = async () => {
       const artists = await axios.get('http://localhost:8000/api/artists')
-      
+      console.log(artists);
       // localStorage.setItem("token", JSON.stringify(res))
       // localStorage.setItem("user", JSON.stringify(res.data.user))
       // props.dispatch({type: LOGIN, payload: res.data})  
       
      
-      setArtists({
-        artistSelect : 'artists',
-        selectedArtist: artists
-      })
+      setArtists(
+        artists.data
+      )
 
       return artists;
   }
 
-  // console.log(artists)
+  console.log(artists)
     
     const handleOnKeyDown = (event) => {
       if(event.keyCode === 13) searchingByName()
     };
    
+    
     return (
     <>
     <Header/>
         <Navbar/>
         <div className='homeContainer' style={{ backgroundImage: `url(${background})`}}>
             <div className='leftMid'>
-                <div className='leftTop'>
-                    <div className='search'>
-                      <input className="searchBox" type="search" name="searchBox" placeholder="Search by name..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
-                      <button type="submit" className="" onClick={()=> searchingByName()} >Buscar</button>
-                      <input className="searchBox" type="search" name="searchBox" placeholder="Search by genre..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
-                      <button type="submit" className="" onClick={()=> searchingByGenre()} >Buscar</button>
-                      <input className="searchBox" type="search" name="searchBox" placeholder="Search by country..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
-                      <button type="submit" className="" onClick={()=> searchingByCountry()} >Buscar</button>
-                      {/* <Search className='input' placeholder="Search a band" allowClear onSearch={() => searchingByName()} style={{ width: 200 }} />
-                      <Search className='input' placeholder="Search a genre" allowClear onSearch={() => searchingByGenre()} style={{ width: 200 }} />
-                      <Search className='input' placeholder="Search a country" allowClear onSearch={() => searchingByCountry()} style={{ width: 200 }} /> */}
+              <div className='leftTop'>
+              <div className='search'>
+                <input className="searchBox" type="search" name="searchBox" placeholder="Search by name..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
+                  <button type="submit" className="" onClick={()=> searchingByName()} >Buscar</button>
+                <input className="searchBox" type="search" name="searchBox" placeholder="Search by genre..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
+                  <button type="submit" className="" onClick={()=> searchingByGenre()} >Buscar</button>
+                <input className="searchBox" type="search" name="searchBox" placeholder="Search by country..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
+                  <button type="submit" className="" onClick={()=> searchingByCountry()} >Buscar</button>
+              </div>
+              </div>
+              <div className='leftBot'>
+                <div className='weeklySugest'>
+                  <div className='sugestText'>Weekly Sugest</div>
+                  <div className='sugestLeft'>
+                    <div className='bandImg'>
+                      <img className='bandImg'></img>
                     </div>
-                   
-                </div>
-                <div className='leftBot'>
-                  <div className='weeklySugest'>
-                    <div className='sugestText'>Weekly Sugest</div>
-                      <div className='sugestLeft'>
-                        <div className='bandImg'>
-                          <img className='bandImg' src={`${artists.selectedArtist.data[8].image}`}></img>
-                        </div>
-                      </div>
-                      <div className='sugestRight'>
-                        <div className='sugestRightTop'>
-                          <div className='bandName'> {`${artists.selectedArtist.data[8].name}`}</div>
-                        </div>
-                        <div className='sugestRightBot'>
-                          <div className='bandGenres'>{`${artists.selectedArtist.data[8].genre}`}</div>
-                        </div>  
-                        <div className='sugestRightBot'>
-                          <div className='bandGenres'>{`${artists.selectedArtist.data[8].country}`}</div>
-                        </div>   
-                      </div>          
+                  </div>
+                  <div className='sugestRight'>
+                    <div className='sugestRightTop'>
+                      <div className='bandName'></div>
+                    </div>
+                    <div className='sugestRightBot'>
+                      <div className='bandGenres'></div>
+                    </div>
+                    <div className='sugestRightBot'>
+                      <div className='bandGenres'></div>
+                    </div>
                   </div>
                 </div>
-                
+              </div>
             </div>
+
+
+
             <div className='rightMid'>
-              
-                <div className='topBands'>
-                  <div className='textTopBands'>TOP 5 BANDS</div>
-                    <div className='band'>
-                      <div className='topBandsLeft'>
-                        <div className='topBandImg'>
-                          <img className='topBandImg' src={`${artists.selectedArtist.data[0].image}`}></img>
-                        </div>
-                      </div>
-                      <div className='topBandsRight'>
-                        <div className='topBandName'> {`${artists.selectedArtist.data[0].name}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[0].genre}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[0].country}`}</div>
-                      </div>
-                      
-                      
-                    </div>
-
-                    <div className='band'>
-                      <div className='topBandsLeft'>
-                        <div className='topBandImg'>
-                          <img className='topBandImg' src={`${artists.selectedArtist.data[1].image}`}></img>
-                        </div>
-                      </div>
-                      <div className='topBandsRight'>
-                        <div className='topBandName'> {`${artists.selectedArtist.data[1].name}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[1].genre}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[1].country}`}</div>
-                      </div>
-                    </div>
-
-                    <div className='band'>
-                      <div className='topBandsLeft'>
-                        <div className='topBandImg'>
-                          <img className='topBandImg' src={`${artists.selectedArtist.data[4].image}`}></img>
-                        </div>
-                      </div>
-
-                      <div className='topBandsRight'>
-                        <div className='topBandName'> {`${artists.selectedArtist.data[4].name}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[4].genre}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[4].country}`}</div>
-                      </div> 
-                    </div>
-
-                    <div className='band'>
-                      <div className='topBandsLeft'>
-                        <div className='topBandImg'>
-                          <img className='topBandImg' src={`${artists.selectedArtist.data[7].image}`}></img>
-                        </div>
-                      </div>
-                      <div className='topBandsRight'>
-                        <div className='topBandName'> {`${artists.selectedArtist.data[7].name}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[7].genre}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[7].country}`}</div>
-                      </div>
-                    </div>
-
-                    <div className='band'>
-                      <div className='topBandsLeft'>
-                        <div className='topBandImg'>
-                          <img className='topBandImg' src={`${artists.selectedArtist.data[9].image}`}></img>
-                        </div>
-                      </div>
-                      <div className='topBandsRight'>
-                        <div className='topBandName'> {`${artists.selectedArtist.data[9].name}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[9].genre}`}</div>
-                        <div className='topBandGenres'>{`${artists.selectedArtist.data[9].country}`}</div>
-                      </div>
-                      
-                      
-                    </div>
-
-                </div>
+              <div className='topBands'>
+                <div className='textTopBands'>Top  Bands</div>
+                <div className='band'>{
+                        artists.slice(0, 4).map((artist, index) => {
+                          return(
+                          <div className='topBandsLeft' key={index}>
+                            <div className='topBandImg'>
+                                <img className='topBandImg'  src={artist.image}></img>
+                            </div>
+                            <div className='topBandsRight'>
+                              <div className='topBandName'> {artist.name}</div>
+                              <div className='topBandGenres'>{artist.genre}</div>
+                              <div className='topBandGenres'>{artist.country}</div>
+                            </div>
+                  
+                          </div>
+                        );
+                      })
+                    }
+                  </div>
+              </div>
             </div>
         </div>
-
+                           
     </>
     )
 }
