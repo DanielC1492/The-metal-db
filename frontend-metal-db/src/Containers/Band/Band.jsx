@@ -27,9 +27,8 @@ const Band = (props) => {
                                     <div className='bandName'> {props.name}</div>
                                     <div className='bandGenres'>{props.genre}</div>
                                     <div className='bandGenres'>{props.country}</div>
-                                </div>
-                            
-                                </div>
+                                </div>    
+                            </div>
                             );
                             })
                         }    
