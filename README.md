@@ -40,6 +40,16 @@ It's a searh engine where you can seek for bands by name, country or gender.
 
 It has been develop over two weeks, front and back.
 
+
+I have been using trello for project organization.
+
+<img width=1000px heigh=800px src="trello.png">
+
+
+And the main page of the app is very straight forward. you have the searching box, the top 4 bands and a weekly sugest.
+
+<img width=1000px heigh=800px src="metal-db-main-view.png" >
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 You can fork the project here. After that, you'll need to run some commands to get you up and running.
@@ -96,10 +106,10 @@ The shop is a work in progress.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [React](https://www.mongodb.com/) - UI
-- [Redux](https://nodejs.org/en/) - State management
-- [SQL](https://expressjs.com/) - Database
-- [Laravel](https://vuejs.org/) - Backend framework
+- [React](https://es.reactjs.org/) - UI
+- [Redux](https://es.redux.js.org/) - State management
+- [PHP](https://www.php.net/manual/es/intro-whatis.php) - Database
+- [Laravel](https://laravel.com/) - Backend framework
 
 
 ## ✍️ Authors <a name = "authors"></a>

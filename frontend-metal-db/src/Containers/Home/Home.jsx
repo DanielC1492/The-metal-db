@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SHOWCOUNT, SEARCH, SHOWBAND, LOGOUTBAND} from '../../redux/types/bandsTypes.js'
+import {  SEARCH} from '../../redux/types/bandsTypes.js'
 import {useHistory} from 'react-router-dom';
 import { Navbar } from '../../Components/Navbar/Navbar';
 import Header from '../../Components/Header/Header';
@@ -51,6 +51,9 @@ const Home = (props) => {
     const arraySearch = res.data.filter(explore => 
         explore.genre.toLowerCase().includes(search.searchBox.toLowerCase())
     )
+
+    props.dispatch({type: SEARCH, payload: arraySearch})
+
     console.log("buscador", arraySearch);
     setSearch({
       ...search, searchBox: arraySearch
@@ -59,7 +62,7 @@ const Home = (props) => {
       return setTimeout(() => {
         history.push('/band')
     }, 1000);
-    props.dispatch({type: SEARCH, payload: arraySearch})
+   
   }
 
   const searchingByCountry = async () => {
@@ -70,6 +73,8 @@ const Home = (props) => {
     const arraySearch = res.data.filter(explore => 
         explore.country.toLowerCase().includes(search.searchBox.toLowerCase())
     )
+    props.dispatch({type: SEARCH, payload: arraySearch})
+
     console.log("buscador", arraySearch);
     setSearch({
       ...search, searchBox: arraySearch
@@ -78,7 +83,7 @@ const Home = (props) => {
       return setTimeout(() => {
       history.push('/band')
       }, 1000);
-    props.dispatch({type: SEARCH, payload: arraySearch})
+    
 
 
   }
@@ -93,15 +98,10 @@ const Home = (props) => {
     const getArtists = async () => {
       const artists = await axios.get('http://localhost:8000/api/artists')
       console.log(artists);
-      // localStorage.setItem("token", JSON.stringify(res))
-      // localStorage.setItem("user", JSON.stringify(res.data.user))
-      // props.dispatch({type: LOGIN, payload: res.data})  
-      
-     
+
       setArtists(
         artists.data
       )
-
       return artists;
   }
 
@@ -127,25 +127,28 @@ const Home = (props) => {
                 <input className="searchBox" type="search" name="searchBox" placeholder="Search by country..." onKeyUp={stateHandler} onKeyDown={handleOnKeyDown}/>
                   <button type="submit" className="" onClick={()=> searchingByCountry()} >Buscar</button>
               </div>
-              </div>
+            </div>
               <div className='leftBot'>
                 <div className='weeklySugest'>
                   <div className='sugestText'>Weekly Sugest</div>
-                  <div className='sugestLeft'>
-                    <div className='bandImg'>
-                      <img className='bandImg'></img>
-                    </div>
-                  </div>
-                  <div className='sugestRight'>
-                    <div className='sugestRightTop'>
-                      <div className='bandName'></div>
-                    </div>
-                    <div className='sugestRightBot'>
-                      <div className='bandGenres'></div>
-                    </div>
-                    <div className='sugestRightBot'>
-                      <div className='bandGenres'></div>
-                    </div>
+
+                  <div className='sugestDiv'>{
+                    artists.slice(10,11).map((artist, index) =>{
+                      return(
+                        <div className='sugestLeft' key={index}>
+                          <div className='bandImg'>
+                                  <img className='bandImg'  src={artist.image}></img>
+                              </div>
+                              <div className='sugestRight'>
+                                <div className='bandName'> {artist.name}</div>
+                                <div className='bandGenres'>{artist.genre}</div>
+                                <div className='bandGenres'>{artist.country}</div>
+                              </div>
+                          
+                            </div>
+                          );
+                        })
+                      }    
                   </div>
                 </div>
               </div>
@@ -181,12 +184,7 @@ const Home = (props) => {
     </>
     )
 }
-// const mapStateToProps = state => {
-//   return {
-//       band : state.bandReducer.band,
-//       count : state.userReducer.query
-//   }
-// }
 
 
-export default connect(/*mapStateToProps*/) (Home);
+
+export default connect() (Home);

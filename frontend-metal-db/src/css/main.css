@@ -118,8 +118,8 @@
   justify-content: space-evenly; }
 
 .topBandImg {
-  height: 5rem;
-  width: 5rem;
+  height: 6rem;
+  width: 6rem;
   border-radius: 2em; }
 
 .topBandsRight {
@@ -457,12 +457,14 @@ li a {
   width: 100vw;
   display: flex;
   flex-direction: row;
-  justify-content: center; }
+  justify-content: center;
+  align-items: center; }
 
-.bandsList {
+.bandForm {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 50rem;
   width: 45rem;
   background-color: #3c415cb8;
