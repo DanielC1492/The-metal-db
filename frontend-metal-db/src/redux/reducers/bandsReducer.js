@@ -1,8 +1,7 @@
 import { SHOWCOUNT, SEARCH, SHOWBAND, LOGOUTBAND} from '../types/bandsTypes';
 
 const initialState = {
-    band: [],
-    count: []
+    band: []
 };
 
 const bandsReducer = (state = initialState, action) => {
